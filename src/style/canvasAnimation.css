@@ -10,7 +10,7 @@
 
 .canvasAnimation .clouds{
     position: absolute;
-    width: 10vw;
+    width: 100vw;
     height: 150px;
     overflow: hidden;
 }
