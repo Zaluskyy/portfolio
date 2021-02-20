@@ -1,0 +1,142 @@
+.navigation{
+    position: fixed;
+    right: 20px;
+    top: 20px;
+}
+
+.navigation ul{
+    background-color: white;
+    width: 600px;
+    border: 1px solid black;
+    box-sizing: border-box;
+    border-radius: 15px;
+    padding: 0px 15px;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    visibility: hidden;
+    width: 10px;
+    opacity: 0;
+    color: transparent;
+    transition-duration: .5s;
+    transition-property: opacity, width, color, visibility;
+}
+
+.navigation .ulAnimation{
+    width: 600px;
+    opacity: 1;
+    color: black;
+    visibility: visible;
+}
+
+.navigation ul li{
+    padding: 7px 5px;
+    transition: background-color .2s;
+}
+.navigation ul li:hover{
+    background-color: rgb(250, 211, 211);
+}
+
+
+
+.navigation button{
+    position: absolute;
+    right: 565px;
+    top: 14px;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 50%;
+    font-size: 15px;
+    transform: translateX(570px);
+    outline: none;
+    transition-duration:  0.5s, .4s, .4s, .4s;
+    transition-property: transform, background-color, border-color, color;
+}
+
+.navigation button:hover{
+    background-color: black;
+    border-color: white;
+    color: white;
+}
+
+.navigation .buttonAnimation{
+    transform: rotate(180deg) ;
+}
+
+@media(max-width: 650px){
+    .navigation{
+        position: fixed;
+        left: 0px;
+        top: -16px;
+    }
+
+    .navigation ul{
+        position: absolute;
+        /* left: -100vw; */
+        background-color: black;
+        color: white;
+        height: 100vh;
+        border: 0;
+        box-sizing: border-box;
+        border-radius: 0;
+        padding: 0px 15px;
+        /* list-style: none; */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        visibility: visible;
+        opacity: 1;
+        transform: translateX(-100vw);
+        transition-duration: .5s;
+        transition-property: opacity, width, color, visibility, transform;
+    }
+    
+    .navigation .ulAnimation{
+        transform: translateX(0);
+        width: 100vw;
+        /* opacity: 1; */
+        color: white;
+        visibility: visible;
+        left: 0;
+    }
+    
+    .navigation ul li{
+        padding: 30px 5px;
+        transition: background-color .2s;
+        border: 2px solid white;
+    }
+    .navigation ul li:hover{
+        background-color: rgb(250, 211, 211);
+    }
+    
+
+
+
+    .navigation button{
+        /* position: absolute; */
+        right: 0;
+        top: 50px;
+        /* width: 40px; */
+        /* height: 40px; */
+        /* background-color: white; */
+        /* border: 2px solid black; */
+        /* border-radius: 50%; */
+        /* font-size: 15px; */
+        transform: translateX(0);
+        /* outline: none; */
+        /* transition-duration:  0.5s, .4s, .4s, .4s; */
+        /* transition-property: transform, background-color, border-color, color; */
+        background-color: black;
+        border-color: white;
+        color: white;
+    }
+    
+    .navigation button:hover{
+    }
+    
+    .navigation .buttonAnimation{
+        /* transform: rotate(180deg) ; */
+    }
+}

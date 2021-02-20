@@ -1,0 +1,26 @@
+.canvasAnimation{
+    position: absolute;
+    /* width: 100%; */
+}
+
+.canvasAnimation canvas{
+    position: absolute;
+    top: 0;
+}
+
+.canvasAnimation .clouds{
+    position: absolute;
+    width: 10vw;
+    height: 150px;
+    overflow: hidden;
+}
+
+.canvasAnimation .clouds div{
+    position: absolute;
+    top: -10px;
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    float: left;
+    border-radius: 60px;
+}

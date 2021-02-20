@@ -1,0 +1,18 @@
+[0124/090843.691:ERROR:directory_reader_win.cc(43)] FindFirstFile: System nie mo¿e odnaleŸæ okreœlonej œcie¿ki. (0x3)
+[0124/150621.354:ERROR:process_reader_win.cc(123)] NtOpenThread: {Odmowa dostêpu} Proces za¿¹da³ dostêpu do obiektu, ale prawa dostêpu nie zosta³y przyznane. (0xc0000022)
+[0124/150621.407:ERROR:process_reader_win.cc(123)] NtOpenThread: {Odmowa dostêpu} Proces za¿¹da³ dostêpu do obiektu, ale prawa dostêpu nie zosta³y przyznane. (0xc0000022)
+[0124/150621.412:ERROR:process_reader_win.cc(123)] NtOpenThread: {Odmowa dostêpu} Proces za¿¹da³ dostêpu do obiektu, ale prawa dostêpu nie zosta³y przyznane. (0xc0000022)
+[0124/150621.398:ERROR:process_reader_win.cc(123)] NtOpenThread: {Odmowa dostêpu} Proces za¿¹da³ dostêpu do obiektu, ale prawa dostêpu nie zosta³y przyznane. (0xc0000022)
+[0124/150621.396:ERROR:process_reader_win.cc(123)] NtOpenThread: {Odmowa dostêpu} Proces za¿¹da³ dostêpu do obiektu, ale prawa dostêpu nie zosta³y przyznane. (0xc0000022)
+[0124/150621.667:ERROR:exception_snapshot_win.cc(99)] thread ID 139276 not found in process
+[0124/150621.667:ERROR:exception_snapshot_win.cc(99)] thread ID 139272 not found in process
+[0124/150621.412:ERROR:process_reader_win.cc(123)] NtOpenThread: {Odmowa dostêpu} Proces za¿¹da³ dostêpu do obiektu, ale prawa dostêpu nie zosta³y przyznane. (0xc0000022)
+[0124/150621.416:ERROR:process_reader_win.cc(123)] NtOpenThread: {Odmowa dostêpu} Proces za¿¹da³ dostêpu do obiektu, ale prawa dostêpu nie zosta³y przyznane. (0xc0000022)
+[0124/150621.634:ERROR:exception_snapshot_win.cc(99)] thread ID 139380 not found in process
+[0124/150621.634:ERROR:exception_snapshot_win.cc(99)] thread ID 138656 not found in process
+[0124/150621.667:ERROR:exception_snapshot_win.cc(99)] thread ID 158336 not found in process
+[0124/150621.395:ERROR:process_reader_win.cc(123)] NtOpenThread: {Odmowa dostêpu} Proces za¿¹da³ dostêpu do obiektu, ale prawa dostêpu nie zosta³y przyznane. (0xc0000022)
+[0124/150621.667:ERROR:exception_snapshot_win.cc(99)] thread ID 45096 not found in process
+[0124/150621.634:ERROR:exception_snapshot_win.cc(99)] thread ID 138720 not found in process
+[0124/150621.667:ERROR:exception_snapshot_win.cc(99)] thread ID 140180 not found in process
+[0125/164314.616:ERROR:directory_reader_win.cc(43)] FindFirstFile: System nie mo¿e odnaleŸæ okreœlonej œcie¿ki. (0x3)
