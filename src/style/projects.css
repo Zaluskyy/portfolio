@@ -1,0 +1,74 @@
+.projects {
+    /* padding: 50px; */
+    width: 100%;
+    height: 100%;
+    /* background-color: rgba(255, 0, 0, .5); */
+    position: relative;
+    color: white;
+    background: linear-gradient(to bottom, rgb(26, 25, 25), rgb(26, 21, 21));
+}
+
+.projects .title {
+    padding: 50px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.projects .slider {
+    height: 70vh;
+    width: 75vw;
+    /* background-color: red; */
+    /* border: 2px solid red; */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.projects .slide {
+    width: 640px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(0%, -50%);
+    /* z-index: 0;
+    opacity: .7; */
+}
+
+.projects .main {
+    transition: .5s;
+
+    border: 2px solid red;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    opacity: 1;
+}
+
+.projects .next {
+    /* border: 2px solid brown; */
+    opacity: 0;
+}
+
+.projects .previous {
+    transition: .5s;
+    transform: translate(-100%, -50%);
+    opacity: 0;
+}
+
+.projects a h3 {
+    color: saddlebrown;
+    position: absolute;
+    left: 50%;
+    top: calc(50vh + 75px);
+    transform: translate(-50%, -50%);
+}
+
+
+
+
+.projects .githubImg {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+
+}

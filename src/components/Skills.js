@@ -1,10 +1,13 @@
 import React from 'react';
 import '../style/skills.css'
 
+import CanvasSkillsAnimation from './CanvasSkillsAnimation';
+
 const Skills = () => {
     return (
         <div className="skills">
-            dsfds
+            <div className="about"></div>
+            <CanvasSkillsAnimation/>
         </div>
     );
 }

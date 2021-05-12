@@ -1,21 +1,21 @@
-.canvasAnimation{
+.canvasAnimation {
     position: absolute;
     /* width: 100%; */
 }
 
-.canvasAnimation canvas{
+.canvasAnimation canvas {
     position: absolute;
     top: 0;
 }
 
-.canvasAnimation .clouds{
+.canvasAnimation .clouds {
     position: absolute;
     width: 100vw;
     height: 150px;
     overflow: hidden;
 }
 
-.canvasAnimation .clouds div{
+.canvasAnimation .clouds div {
     position: absolute;
     top: -10px;
     width: 100px;

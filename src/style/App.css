@@ -2,28 +2,32 @@
   text-align: center;
 }
 
-header{
+header {
   height: 100vh;
   background-color: rgb(195, 125, 125);
 }
-main{
+
+main {
   height: 100vh;
   background-color: rgb(85, 29, 29);
 }
-article{
+
+article {
   height: 100vh;
   background-color: rgb(104, 5, 5);
 }
-aside{
+
+aside {
   height: 100vh;
-  background-color: rgb(236, 146, 146);
+  background-color: rgb(26, 21, 21);
 }
-section{
+
+section {
   height: 100vh;
   background-color: rgb(146, 127, 127);
 }
 
-nav{
+nav {
   margin: 0;
 }
 
@@ -34,13 +38,13 @@ nav{
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
- 
+
 ::-webkit-scrollbar-thumb {
-  background: rgb(31, 31, 31); 
+  background: rgb(31, 31, 31);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }

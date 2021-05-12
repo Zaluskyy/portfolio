@@ -21,7 +21,7 @@ const CanAmimation = () => {
 
     const randMinMax = (min, max, floor=false) =>{
         if(floor) return Math.floor(Math.random()*(max-min+1)+min);
-        return Math.random()*(max-min+1)+min;
+        return Math.random()*(max-min)+min;
     }
 
     class Circle{
@@ -116,7 +116,8 @@ const CanAmimation = () => {
 
 
     useEffect(()=>{
-            requestRef.current = requestAnimationFrame(animation);            
+            // requestRef.current = requestAnimationFrame(animation);            
+            animation()
     }, [])
 
     
@@ -127,7 +128,6 @@ const CanAmimation = () => {
         clouds.push(<div key={i} style={{left:`${i*50-50}px`}} ></div>)
     }
 
-    console.log(window.innerWidth);
     return (
         <div className="canvasAnimation">
             <canvas

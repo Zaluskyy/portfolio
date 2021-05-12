@@ -1,0 +1,13 @@
+.canvasSkillsAnimation {
+    height: 100%;
+    width: 100%;
+    color: white;
+    /* background-color: rebeccapurple; */
+}
+
+.canvasSkillsAnimation canvas {
+    margin-top: 25px;
+    border: 2px solid red;
+    /* background-color: rosybrown; */
+    /* position: absolute; */
+}
