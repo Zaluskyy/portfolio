@@ -4,10 +4,25 @@
     height: 100%;
 }
 
-.skills .about {
+.skills .aboutSkills {
     /* background-color: red; */
     background-color: transparent;
     width: 50vw;
     height: 100vh;
     float: left;
+}
+
+.skills .aboutSkills h1 {
+    color: rgb(167, 42, 206);
+    font-size: 50px;
+    width: 70%;
+    margin-left: 20%;
+}
+
+.skills .aboutSkills .text {
+    color: white;
+    font-size: 40px;
+    width: 70%;
+    margin-left: 20%;
+    padding-top: 50px;
 }

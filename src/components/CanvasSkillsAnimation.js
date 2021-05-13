@@ -1,5 +1,4 @@
-import React, { useRef } from 'react';
-import { useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 
 import '../style/canvasSkillsAnimation.css'
 
@@ -8,6 +7,7 @@ import css from '../img/skills/css.png';
 import js from '../img/skills/js.png';
 import git from '../img/skills/git.png';
 import react from '../img/skills/react.png';
+import me from '../img/me.jpg';
 
 
 const htmlImg = new Image()
@@ -20,6 +20,8 @@ const gitImg = new Image()
 gitImg.src = git
 const reactImg = new Image()
 reactImg.src = react
+const meImg = new Image()
+meImg.src = me
 
 const images = [
     htmlImg,
@@ -40,14 +42,43 @@ const CanvasSkillsAnimation = () => {
         return Math.random()*(max-min)+min;
     }
 
+    const distance = (x1, y1, x2, y2)=>{
+        const distanceX = x1-x2
+        const distanceY = y1-y2
+        return Math.sqrt(Math.pow(distanceX, 2)+Math.pow(distanceY, 2))
+    }
+
 
 
     const skillsSize = 50
 
     let lineColor = randMinMax(0, 360, true)
 
+    const centerBallSize = 100
 
 
+
+    class CenterBall{
+        constructor(x, y){
+            this.x = x
+            this.y = y
+            this.velocity = {
+                x: 0,
+                y:0
+            }
+            this.mass = 3
+        }
+        draw(){
+            const ctx = canvas.current.getContext("2d")
+            ctx.beginPath()
+            ctx.arc(this.x, this.y, centerBallSize, 0, Math.PI*2, false)
+            ctx.fill()
+            ctx.drawImage(meImg, canvas.current.width/2-centerBallSize*1.3/2, canvas.current.height/2-(meImg.height/(meImg.width/(centerBallSize*1.3)))/2, centerBallSize*1.3, meImg.height/(meImg.width/(centerBallSize*1.3)))
+        }
+    }
+
+    let centerBall
+    
 
 
 
@@ -55,13 +86,22 @@ const CanvasSkillsAnimation = () => {
 
 
     class Skills{
-        constructor(x, y, velocityX, velocityY, image){
+        constructor(x, y, image){
             this.x = x
             this.y = y
-            this.velocityX = velocityX
-            this.velocityY = velocityY
+
+            this.velocity = {
+                x: randMinMax(-2, 2),
+                y: randMinMax(-2, 2)
+            }
+
+            this.mass = 1
+
+            this.friction = .5
+
             this.image = image
             this.heightImg = (this.image.height/(this.image.width/skillsSize))
+            this.reflectionAccess = true
         }
 
         draw(){
@@ -82,54 +122,63 @@ const CanvasSkillsAnimation = () => {
 
         }
 
-        update(){
+        update(centerBall){
 
             const changeColorLine = ()=>{
                 lineColor += 1
             }
 
-            this.x += this.velocityX
-            this.y += this.velocityY
+            this.x += this.velocity.x
+            this.y += this.velocity.y
+
+            
 
             if(this.x>canvas.current.width-skillsSize||this.x<skillsSize){
-                this.velocityX *= -1
+                this.velocity.x *= -1
                 changeColorLine()
             }
             if(this.y>canvas.current.height-skillsSize||this.y<skillsSize){
-                this.velocityY *= -1
+                this.velocity.y *= -1
                 changeColorLine()
             }
+            if(distance(this.x, this.y, canvas.current.width/2, canvas.current.height/2)<=skillsSize+centerBallSize&&this.reflectionAccess){
+                // lineColor = 0
+                this.velocity.x *= -1
+                this.velocity.y *= -1
+                // resolveCollision(this, centerBall)
 
+                // this.velocity.x *= this.friction
+                // this.velocity.y *= this.friction
+                
+                this.reflectionAccess = false
+            }else if(distance(this.x, this.y, canvas.current.width/2, canvas.current.height/2)>skillsSize+centerBallSize){
+                this.reflectionAccess = true
+            }
 
-            // if(this.x>canvas.width-50||this.x<50){
-            //     this.velocityX *=-1
-            //     changeColorLine()
-            // } 
-            // if(this.y>canvas.height-50||this.y<50){
-            //     this.velocityY *=-1
-            //     changeColorLine()
-            // }
 
             this.draw()
         }
     }
 
     let skills = []
-    const kurwaJD = ()=>{
+    const init = ()=>{
 
         for (let i = 0; i < images.length; i++) {
             
             const x = randMinMax(0+skillsSize, canvas.current.width-skillsSize)
             const y = randMinMax(0+skillsSize, canvas.current.height-skillsSize)
             
-            const velocityX = randMinMax(-2, 2)
-            const velocityY = randMinMax(-2, 2)
+            // const velocityX = randMinMax(-2, 2)
+            // const velocityY = randMinMax(-2, 2)
 
             const image = images[i]
             
-            skills.push(new Skills(x, y, velocityX, velocityY, image))        
+            skills.push(new Skills(x, y, image))        
             
         }
+        const centerX = canvas.current.width/2
+        const centerY = canvas.current.height/2
+        centerBall = new CenterBall(centerX, centerY)
     }
         
 
@@ -138,15 +187,18 @@ const CanvasSkillsAnimation = () => {
         requestRef.current = requestAnimationFrame(animation);
         ctx.clearRect(0, 0, canvas.current.width, canvas.current. height)
         for (let i = 0; i < skills.length; i++) {
-            skills[i].update()
-            
+            skills[i].update(centerBall)    
         }
+        centerBall.draw()
+        
+
+        // (this.image.height/(this.image.width/skillsSize))
     }
 
 
     useEffect(()=>{
         // requestRef.current = requestAnimationFrame(animation)
-        kurwaJD()
+        init()
         animation()
     }, [])
 
