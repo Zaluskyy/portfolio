@@ -2,7 +2,7 @@ import React from 'react';
 import '../style/contact.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPhoneAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { faPhoneAlt, faEnvelope, faYinYang, faMapMarked, faDrumstickBite, faCheckDouble } from '@fortawesome/free-solid-svg-icons'
 
 const contacts = [
     {
@@ -16,24 +16,24 @@ const contacts = [
         content: "kryzal77@gmail.com"
     },
     {
-        name: "email",
-        icon: faEnvelope,
-        content: "kryzal77@gmail.com"
+        name: "Facebook",
+        icon: faYinYang,
+        content: "Krystian Załuski"
     },
     {
-        name: "email",
-        icon: faEnvelope,
-        content: "kryzal77@gmail.com"
+        name: "Instagram",
+        icon: faMapMarked,
+        content: "Kryzal77"
     },
     {
-        name: "email",
-        icon: faEnvelope,
-        content: "kryzal77@gmail.com"
+        name: "Github",
+        icon: faDrumstickBite,
+        content: "Zaluskyy"
     },
     {
-        name: "email",
-        icon: faEnvelope,
-        content: "kryzal77@gmail.com"
+        name: "LinkedIn",
+        icon: faCheckDouble,
+        content: "Not found"
     },
 ]
 

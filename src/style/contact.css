@@ -5,12 +5,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    background-color: rgb(34, 33, 33);
+    background: linear-gradient(to bottom, rgb(26, 21, 21), rgb(34, 33, 33));
 }
 
 .contact h1 {
     position: absolute;
-    color: white;
+    color: yellow;
     font-size: 40px;
 }
 
@@ -18,7 +18,7 @@
     width: 25vw;
     height: 30vh;
     margin-top: 4vw;
-    border: 2px solid rgb(255, 0, 0);
+    border: 5px solid rgb(255, 0, 0);
     position: relative;
     overflow: hidden;
     border-radius: 20px;
@@ -52,6 +52,7 @@
     transform: translate(-50%, -50%);
     font-size: 40px;
     width: 100%;
+    font-weight: bold;
 }
 
 .contact .iconPlace {

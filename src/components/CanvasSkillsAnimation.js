@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 
 import '../style/canvasSkillsAnimation.css'
 
@@ -8,6 +8,7 @@ import js from '../img/skills/js.png';
 import git from '../img/skills/git.png';
 import react from '../img/skills/react.png';
 import me from '../img/me.jpg';
+import { faWindowRestore } from '@fortawesome/free-solid-svg-icons';
 
 
 const htmlImg = new Image()
@@ -32,6 +33,8 @@ const images = [
 ]
 
 const CanvasSkillsAnimation = () => {
+
+    const [canvasSize, setCanvasSize] = useState(window.innerWidth/2-50)
 
     const canvas = useRef(null);
     // console.log(canvas.current.width);
@@ -203,15 +206,19 @@ const CanvasSkillsAnimation = () => {
     }, [])
 
 
-
+    window.addEventListener("resize", ()=>{
+        setCanvasSize(window.innerWidth/2-50)
+    })
 
 
     return ( 
         <div className="canvasSkillsAnimation">
             <canvas
             ref={canvas}
-            width={window.innerWidth/2-50}
-            height={window.innerWidth/2-50}
+            width={canvasSize}
+            height={canvasSize}
+            // width={window.innerWidth/2-50}
+            // height={window.innerWidth/2-50}
             />
         </div>
      );

@@ -2,6 +2,8 @@ import React, {useState, useEffect, useRef} from 'react';
 import '../style/canvasAnimation.css'
 
 const CanAmimation = () => {
+    const [canvasWidth, setCanvasWidth] = useState(window.innerWidth-10)
+    const [canvasHeight, setCanvasHeight] = useState(window.innerHeight)
 
     const mouse = {
         x: undefined,
@@ -128,12 +130,17 @@ const CanAmimation = () => {
         clouds.push(<div key={i} style={{left:`${i*50-50}px`}} ></div>)
     }
 
+    window.addEventListener("resize", ()=>{
+        setCanvasWidth(window.innerWidth-10)
+        setCanvasHeight(window.innerHeight)
+    })
+
     return (
         <div className="canvasAnimation">
             <canvas
                 ref={canvas}
-                width={window.innerWidth-10}
-                height={window.innerHeight}
+                width={canvasWidth}
+                height={canvasHeight}
             />
             <div className="clouds">
                 {clouds}
