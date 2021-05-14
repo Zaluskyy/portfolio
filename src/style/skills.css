@@ -10,19 +10,39 @@
     width: 50vw;
     height: 100vh;
     float: left;
+    position: relative;
 }
 
-.skills .aboutSkills h1 {
-    color: rgb(167, 42, 206);
+
+.skills .aboutSkills .title {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgb(206, 42, 206);
     font-size: 50px;
     width: 70%;
-    margin-left: 20%;
+    font-weight: bold;
 }
 
 .skills .aboutSkills .text {
     color: white;
     font-size: 40px;
     width: 70%;
-    margin-left: 20%;
-    padding-top: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media (max-width: 1500px) {
+    .skills .aboutSkills .text {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 800px) {
+    .skills .aboutSkills .text {
+        font-size: 20px;
+    }
 }

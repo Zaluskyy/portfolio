@@ -1,4 +1,4 @@
-.about{
+.about {
     position: relative;
     background-color: black;
     width: 100%;
@@ -6,7 +6,7 @@
     overflow: hidden;
 }
 
-.about img{
+.about img {
     position: absolute;
     right: -400px;
     width: 1440px;
@@ -16,11 +16,11 @@
     transition: transform 1s;
 }
 
-.about .animateImg{
+.about .animateImg {
     transform: translateY(-75px)
 }
 
-.about div{
+.about div {
     position: absolute;
     left: 20%;
     top: 10%;
@@ -33,98 +33,97 @@
 }
 
 
-.about font{
+.about font {
     color: white;
     font-size: 40px;
 }
 
-.about .title{
+.about .title {
     font-size: 50px;
     color: yellowgreen;
 }
 
-.about .appearText{
+.about .appearText {
     opacity: 1;
 }
 
 
-@media (max-width: 1440px){
-    .about img{
-            right: -300px;
-            width: 1200px;
+@media (max-width: 1440px) {
+    .about img {
+        right: -300px;
+        width: 1200px;
     }
 }
 
-@media (max-width: 1300px){
-    .about img{
-            right: -705px;
-            width: 1440px;
+@media (max-width: 1300px) {
+    .about img {
+        right: -705px;
+        width: 1440px;
     }
 
-    .about div{
+    .about div {
         left: 15%;
-    }  
+    }
 }
 
-@media (max-width: 900px){
-    .about div{
+@media (max-width: 900px) {
+    .about div {
         left: 5%;
-    }  
+    }
 }
 
-@media (max-width: 650px) and (min-height: 800px){    
-    .about img{
+@media (max-width: 650px) and (min-height: 800px) {
+    .about img {
         width: 500px;
         left: 50%;
         top: calc(100vh - 350px);
         transform: translateY(290px) translateX(-50%);
     }
 
-    .about .animateImg{
-        transform: translateY(-75px) translateX(-50%) ;
+    .about .animateImg {
+        transform: translateY(-75px) translateX(-50%);
     }
-    
-    .about div{
+
+    .about div {
         left: 50%;
-        transform: translateX(-50%) ;
-            top: 7%;
+        transform: translateX(-50%);
+        top: 7%;
         width: 90vw;
     }
-    
-    .about font{
+
+    .about font {
         font-size: 23px;
     }
 
-    .about .title{
+    .about .title {
         font-size: 30px;
     }
 }
 
-@media (max-width: 650px) and (max-height: 800px){    
-    .about img{
+@media (max-width: 650px) and (max-height: 800px) {
+    .about img {
         width: 500px;
         left: 50%;
         top: calc(100vh - 350px);
         transform: translateY(290px) translateX(-50%);
     }
 
-    .about .animateImg{
-        transform: translateY(-75px) translateX(-50%) ;
+    .about .animateImg {
+        transform: translateY(-75px) translateX(-50%);
     }
-    
-    .about div{
+
+    .about div {
         left: 50%;
-        transform: translateX(-50%) ;
+        transform: translateX(-50%);
         top: 2%;
         width: 90vw;
     }
-    
-    .about font{
+
+    .about font {
         font-size: 23px;
     }
 
-    .about .title{
+    .about .title {
         font-size: 30px;
     }
 }
-

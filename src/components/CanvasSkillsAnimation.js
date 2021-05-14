@@ -8,7 +8,6 @@ import js from '../img/skills/js.png';
 import git from '../img/skills/git.png';
 import react from '../img/skills/react.png';
 import me from '../img/me.jpg';
-import { faWindowRestore } from '@fortawesome/free-solid-svg-icons';
 
 
 const htmlImg = new Image()
@@ -61,32 +60,6 @@ const CanvasSkillsAnimation = () => {
 
 
 
-    class CenterBall{
-        constructor(x, y){
-            this.x = x
-            this.y = y
-            this.velocity = {
-                x: 0,
-                y:0
-            }
-            this.mass = 3
-        }
-        draw(){
-            const ctx = canvas.current.getContext("2d")
-            ctx.beginPath()
-            ctx.arc(this.x, this.y, centerBallSize, 0, Math.PI*2, false)
-            ctx.fill()
-            ctx.drawImage(meImg, canvas.current.width/2-centerBallSize*1.3/2, canvas.current.height/2-(meImg.height/(meImg.width/(centerBallSize*1.3)))/2, centerBallSize*1.3, meImg.height/(meImg.width/(centerBallSize*1.3)))
-        }
-    }
-
-    let centerBall
-    
-
-
-
-
-
 
     class Skills{
         constructor(x, y, image){
@@ -125,7 +98,7 @@ const CanvasSkillsAnimation = () => {
 
         }
 
-        update(centerBall){
+        update(){
 
             const changeColorLine = ()=>{
                 lineColor += 1
@@ -145,13 +118,9 @@ const CanvasSkillsAnimation = () => {
                 changeColorLine()
             }
             if(distance(this.x, this.y, canvas.current.width/2, canvas.current.height/2)<=skillsSize+centerBallSize&&this.reflectionAccess){
-                // lineColor = 0
+                
                 this.velocity.x *= -1
                 this.velocity.y *= -1
-                // resolveCollision(this, centerBall)
-
-                // this.velocity.x *= this.friction
-                // this.velocity.y *= this.friction
                 
                 this.reflectionAccess = false
             }else if(distance(this.x, this.y, canvas.current.width/2, canvas.current.height/2)>skillsSize+centerBallSize){
@@ -171,17 +140,11 @@ const CanvasSkillsAnimation = () => {
             const x = randMinMax(0+skillsSize, canvas.current.width-skillsSize)
             const y = randMinMax(0+skillsSize, canvas.current.height-skillsSize)
             
-            // const velocityX = randMinMax(-2, 2)
-            // const velocityY = randMinMax(-2, 2)
-
             const image = images[i]
             
             skills.push(new Skills(x, y, image))        
             
         }
-        const centerX = canvas.current.width/2
-        const centerY = canvas.current.height/2
-        centerBall = new CenterBall(centerX, centerY)
     }
         
 
@@ -190,12 +153,15 @@ const CanvasSkillsAnimation = () => {
         requestRef.current = requestAnimationFrame(animation);
         ctx.clearRect(0, 0, canvas.current.width, canvas.current. height)
         for (let i = 0; i < skills.length; i++) {
-            skills[i].update(centerBall)    
+            skills[i].update()    
         }
-        centerBall.draw()
+        // const ctx = canvas.current.getContext("2d")
+            ctx.beginPath()
+            ctx.arc(canvas.current.width/2, canvas.current.height/2, centerBallSize, 0, Math.PI*2, false)
+            ctx.fill()
+            ctx.drawImage(meImg, canvas.current.width/2-centerBallSize*1.3/2, canvas.current.height/2-(meImg.height/(meImg.width/(centerBallSize*1.3)))/2, centerBallSize*1.3, meImg.height/(meImg.width/(centerBallSize*1.3)))
         
 
-        // (this.image.height/(this.image.width/skillsSize))
     }
 
 
