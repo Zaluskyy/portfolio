@@ -54,15 +54,15 @@ const Projects = () => {
 
         
         if(index===currentSlide){
-        return <a href={item.domain} target="_blank" key={index} ><img className="slide main" src={item.img}/><h3>{item.title}</h3></a>
+        return <a href={ item.domain } target="_blank" key={ index } without rel="noreferrer"><img className="slide main" src={ item.img } alt='alt'/><h3>{ item.title }</h3></a>
         }
-        else if(currentSlide<pages.length-1&&index===currentSlide+1||currentSlide===pages.length-1&&index==0){
-            return <a href={item.domain} target="_blank" key={index} className="disabled"><img className="slide next" src={item.img}/></a>
+        else if(currentSlide<pages.length -1 && index === currentSlide +1 || currentSlide === pages.length-1 && index === 0){
+            return <a href={ item.domain } target="_blank" key={ index } className="disabled" without rel="noreferrer"><img className="slide next" src={ item.img } alt='alt'/></a>
         }
-        else if(currentSlide>0&&index===currentSlide-1||currentSlide==0&&pages.length-1){
-            return <a href={item.domain} target="_blank" key={index} className="disabled" ><img className="slide previous" src={item.img}/></a>
+        else if(currentSlide>0 & index === currentSlide -1 || currentSlide === 0 && pages.length -1 ){
+            return <a href={ item.domain } target="_blank" key={ index } className="disabled" without rel="noreferrer"><img className="slide previous" src={ item.img } alt='alt'/></a>
         }
-
+        return null
     })
 
 
@@ -81,7 +81,7 @@ const Projects = () => {
             </div>
 
             <div className="githubImg">
-                <a target="_blank" href="https://github.com/Zaluskyy"> <img src={githubImg} /></a>
+                <a target="_blank" href="https://github.com/Zaluskyy" without rel="noreferrer"> <img src={githubImg} alt='alt'/></a>
             </div>
         </div>
     );

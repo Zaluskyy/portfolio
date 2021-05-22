@@ -151,7 +151,7 @@ const CanvasSkillsAnimation = () => {
     const animation = ()=>{
         const ctx = canvas.current.getContext("2d");
         requestRef.current = requestAnimationFrame(animation);
-        ctx.clearRect(0, 0, canvas.current.width, canvas.current. height)
+        ctx.clearRect(0, 0, canvas.current.width, canvas.current.height)
         for (let i = 0; i < skills.length; i++) {
             skills[i].update()    
         }

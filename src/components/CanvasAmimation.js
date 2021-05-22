@@ -75,7 +75,7 @@ const CanAmimation = () => {
                 else if(mouse.x<window.innerWidth*.25) this.goRight = true
                 else this.goRight = goRight
 
-                if(mouseUndefined==false){
+                if(mouseUndefined === false){
                 this.xVelocity = xVelocity*((mouse.y<20?20:mouse.y)/window.innerHeight)*this.maxVelocity
                 this.yVelocity = yVelocity*((mouse.y<20?20:mouse.y)/window.innerHeight)*this.maxVelocity
                 }
