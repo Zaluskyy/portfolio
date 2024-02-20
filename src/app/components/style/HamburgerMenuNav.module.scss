@@ -18,7 +18,6 @@ $navHeight: 60px;
 
   .background {
     position: absolute;
-    background-color: blue;
     background-color: $lightDark;
     z-index: 0;
     width: 60px;
@@ -35,5 +34,26 @@ $navHeight: 60px;
     font-size: 40px;
     font-weight: $qui-sb;
     cursor: pointer;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0px;
+      width: 0%;
+      height: 2px;
+      background-color: $orange;
+      width: 100%;
+      transform: scaleX(0);
+      border-radius: 10px;
+      transition: 0.2s ease transform;
+      transform-origin: right;
+    }
+
+    &:hover::before {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
   }
 }

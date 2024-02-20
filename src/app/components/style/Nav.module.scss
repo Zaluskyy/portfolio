@@ -50,6 +50,27 @@ $navHeight: 60px;
       font-size: 20px;
       font-weight: $qui;
       cursor: pointer;
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        width: 0%;
+        height: 2px;
+        background-color: $orange;
+        width: 100%;
+        transform: scaleX(0);
+        border-radius: 10px;
+        transition: 0.2s ease transform;
+        transform-origin: right;
+      }
+
+      &:hover::before {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
     }
   }
 
