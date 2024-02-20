@@ -1,0 +1,39 @@
+@import "../../variables.scss";
+
+$navHeight: 60px;
+
+.hamburgerMenu {
+  position: absolute;
+  width: 100%;
+  height: calc(100vh - $navHeight);
+  height: calc(100dvh - $navHeight);
+  top: $navHeight;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+  align-items: center;
+  overflow: hidden;
+
+  .background {
+    position: absolute;
+    background-color: blue;
+    background-color: $lightDark;
+    z-index: 0;
+    width: 60px;
+    height: 60px;
+    right: 0;
+    top: -60px;
+    border-radius: 50%;
+    transform-origin: center;
+  }
+
+  li {
+    z-index: 1;
+    list-style: none;
+    font-size: 40px;
+    font-weight: $qui-sb;
+    cursor: pointer;
+  }
+}
