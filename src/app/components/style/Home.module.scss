@@ -1,0 +1,116 @@
+@import "../../variables.scss";
+
+.Home {
+  width: 100%;
+  // min-height: calc(100vh - 60px);
+  // min-height: calc(100dvh - 60px);
+  background-color: $dark;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+  .circleContainer {
+    width: 200px;
+    height: 200px;
+    background-color: $orange;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+
+    .logoContainer {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      img {
+        width: 100%;
+        height: 100%;
+        scale: 1.05;
+      }
+    }
+    .imgContainer {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  .left {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .center {
+      margin-top: 40px;
+      margin-bottom: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      h1 {
+        width: 75%;
+        font-size: 30px;
+        font-weight: $qui-b;
+        text-align: center;
+      }
+      h3 {
+        width: 80%;
+        font-size: 15px;
+        font-weight: $qui;
+        text-align: center;
+        color: $gray;
+      }
+      .linkContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        div {
+          width: 24px;
+          height: 24px;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+    .techStack {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+
+      h4 {
+        font-size: 20px;
+        font-weight: $qui-med;
+      }
+      .techStackIconContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: calc(100vw / 32);
+
+        img {
+          max-width: 40px;
+          max-height: 40px;
+          width: calc(100vw / 13);
+          height: calc(100vw / 13);
+        }
+      }
+    }
+  }
+}

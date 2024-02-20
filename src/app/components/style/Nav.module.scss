@@ -13,6 +13,7 @@ $navHeight: 60px;
   padding: 0 20px;
   position: relative;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  z-index: 100;
 
   .websiteNameContainer {
     display: flex;
