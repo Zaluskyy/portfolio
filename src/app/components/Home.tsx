@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import style from "./style/Home.module.scss";
 import Image from "next/image";
 
@@ -17,11 +17,15 @@ import reactIcon from "../../../public/icon/tech/react.svg";
 import nextIcon from "../../../public/icon/tech/next.svg";
 import firebaseIcon from "../../../public/icon/tech/firebase.svg";
 
-import meImg from "../../../public/img/me-square.png";
+import meSquareImg from "../../../public/img/me-square.png";
+import meImg from "../../../public/img/me2.png";
+import PortfolioContext from "../context/context";
 
 interface HomeProps {}
 
 const Home: React.FC<HomeProps> = ({}) => {
+  const context = useContext(PortfolioContext);
+  const { pageWidth } = context;
   const techArr = [
     { icon: htmlIcon, name: "html" },
     { icon: cssIcon, name: "css" },
@@ -39,12 +43,24 @@ const Home: React.FC<HomeProps> = ({}) => {
 
   return (
     <div className={style.Home}>
-      <div className={style.circleContainer}>
-        <div className={style.logoContainer}>
-          <Image src={logoIcon} alt="logo" />
-        </div>
-        <div className={style.imgContainer}>
-          <Image src={meImg} alt="Krystian" />
+      <div className={style.right}>
+        <div className={style.circleContainer}>
+          <div className={style.logoContainer}>
+            <Image src={logoIcon} alt="logo" />
+          </div>
+          <div className={style.imgContainer}>
+            {pageWidth ? (
+              pageWidth < 820 ? (
+                <Image priority={true} src={meSquareImg} alt="Krystian" />
+              ) : (
+                <Image priority={true} src={meImg} alt="Krystian" />
+              )
+            ) : window.innerWidth < 820 ? (
+              <Image priority={true} src={meSquareImg} alt="Krystian" />
+            ) : (
+              <Image priority={true} src={meImg} alt="Krystian" />
+            )}
+          </div>
         </div>
       </div>
 

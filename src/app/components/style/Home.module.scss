@@ -11,37 +11,47 @@
   padding-top: 30px;
   padding-bottom: 30px;
 
-  .circleContainer {
-    width: 200px;
-    height: 200px;
-    background-color: $orange;
-    border-radius: 50%;
-    position: relative;
-    overflow: hidden;
+  .right {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    .logoContainer {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      left: 0;
-      top: 0;
-      img {
+    .circleContainer {
+      width: 200px;
+      height: 200px;
+      background-color: $orange;
+      border-radius: 50%;
+      position: relative;
+
+      .logoContainer {
         width: 100%;
         height: 100%;
-        scale: 1.05;
+        overflow: hidden;
+        border-radius: 50%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        img {
+          width: 100%;
+          height: 100%;
+          scale: 1.05;
+        }
       }
-    }
-    .imgContainer {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-
-      img {
+      .imgContainer {
         width: 100%;
         height: 100%;
+        overflow: hidden;
+        border-radius: 50%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 1;
+
+        img {
+          width: 100%;
+          height: 100%;
+        }
       }
     }
   }
@@ -109,6 +119,137 @@
           max-height: 40px;
           width: calc(100vw / 13);
           height: calc(100vw / 13);
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 820px) {
+  .Home {
+    height: calc(100vh - 60px);
+    min-height: 500px;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+    padding: 0;
+    padding: 0 20px;
+
+    .left {
+      order: 1;
+      height: 100%;
+      width: 50%;
+      justify-content: flex-end;
+      align-items: flex-start;
+      padding-bottom: 90px;
+
+      .center {
+        align-items: flex-start;
+        margin-bottom: 15vh;
+        h1 {
+          font-size: 35px;
+          text-align: left;
+        }
+        h3 {
+          width: 70%;
+          font-size: 15px;
+          text-align: left;
+        }
+        .linkContainer {
+        }
+      }
+      .techStack {
+        align-items: flex-start;
+        h4 {
+        }
+        .techStackIconContainer {
+          gap: calc(50vw / 32);
+
+          h4 {
+          }
+          img {
+            max-width: 40px;
+            max-height: 40px;
+            width: calc(50vw / 13);
+            height: calc(50vw / 13);
+          }
+        }
+      }
+    }
+    .right {
+      overflow: hidden;
+      order: 2;
+      height: 100%;
+      width: 50%;
+      .circleContainer {
+        align-self: center;
+        min-width: 370px;
+        min-height: 370px;
+        max-width: calc(70vh - 60px);
+        max-height: calc(70vh - 60px);
+        width: calc(50vw - 40px);
+        height: calc(50vw - 40px);
+
+        .imgContainer {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          overflow: visible;
+          top: 140px;
+          img {
+            object-fit: contain;
+            width: auto;
+            height: 100vh;
+            max-width: 50vw;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1150px) {
+  .Home {
+    padding: 0 40px;
+    .left {
+      .center {
+        h1 {
+          font-size: 40px;
+        }
+        h3 {
+          font-size: 17px;
+        }
+      }
+      .techStack {
+        h4 {
+          font-size: 25px;
+        }
+      }
+    }
+    .right {
+      .circleContainer {
+        .imgContainer {
+          top: 50px;
+        }
+      }
+    }
+  }
+}
+@media (min-width: 1300px) {
+  .Home {
+    padding: 0 60px;
+    .left {
+      .center {
+        h1 {
+          font-size: 45px;
+        }
+        h3 {
+          font-size: 20px;
+        }
+      }
+      .techStack {
+        h4 {
+          font-size: 28px;
         }
       }
     }

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Quicksand } from "next/font/google";
 import "./globals.scss";
 import Nav from "./components/Nav";
+import { PortfolioContextProvider } from "./context/context";
 
 const quicksand = Quicksand({ subsets: ["latin"] });
 
@@ -18,10 +19,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={quicksand.className}>
-        <Nav />
-        {children}
-      </body>
+      <PortfolioContextProvider>
+        <body className={quicksand.className}>
+          <Nav />
+          {children}
+        </body>
+      </PortfolioContextProvider>
     </html>
   );
 }

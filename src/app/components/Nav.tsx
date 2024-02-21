@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import style from "./style/Nav.module.scss";
 import Image from "next/image";
 
@@ -7,10 +7,13 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import logoIcon from "../../../public/icon/logo.svg";
 import HamburgerMenuNav from "./HamburgerMenuNav";
+import PortfolioContext from "../context/context";
 
 interface NavProps {}
 
 const Nav: React.FC<NavProps> = ({}) => {
+  const context = useContext(PortfolioContext);
+  const { setPageWidth } = context;
   const [hamburgerMenu, setHamburgerMenu] = useState<boolean>(false);
 
   useEffect(() => {
@@ -23,6 +26,7 @@ const Nav: React.FC<NavProps> = ({}) => {
   }, [hamburgerMenu]);
 
   const getSize = () => {
+    setPageWidth(window.innerWidth);
     if (window.innerWidth > 650) {
       setHamburgerMenu(false);
     }
