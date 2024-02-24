@@ -43,7 +43,9 @@ const Home: React.FC<HomeProps> = ({}) => {
       opacity: 1,
       scale: [0, 0.1, 0.5, 0.1, 1],
       transition: {
-        duration: 0.1 * id + 1,
+        duration: 0.06 * id + 0.6,
+        // duration: 0.4,
+        // delay: 0.1 * id + 0.1,
       },
     }),
   };
@@ -101,6 +103,24 @@ const Home: React.FC<HomeProps> = ({}) => {
     );
   });
 
+  const linkArr = [
+    { icon: githubIcon, name: "GitHub" },
+    { icon: linkedinIcon, name: "LinkedIn" },
+  ];
+
+  const link = linkArr.map((item, index) => {
+    return (
+      <motion.div
+        key={item.name}
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.1 * index + 1.8, duration: 0.5 }}
+      >
+        <Image src={item.icon} alt={item.name} />
+      </motion.div>
+    );
+  });
+
   const techArr = [
     { icon: htmlIcon, name: "html" },
     { icon: cssIcon, name: "css" },
@@ -112,8 +132,17 @@ const Home: React.FC<HomeProps> = ({}) => {
     { icon: firebaseIcon, name: "fireBase" },
   ];
 
-  const tech = techArr.map((item) => {
-    return <Image key={item.name} src={item.icon} alt={item.name} />;
+  const tech = techArr.map((item, index) => {
+    return (
+      <motion.div
+        key={item.name}
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.1 * index + 2.5, duration: 0.5 }}
+      >
+        <Image src={item.icon} alt={item.name} />
+      </motion.div>
+    );
   });
 
   return (
@@ -143,22 +172,25 @@ const Home: React.FC<HomeProps> = ({}) => {
       <div className={style.left}>
         <div className={style.center}>
           <h1>{name}</h1>
-          <h3>
+          <motion.h3
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 1.5 }}
+          >
             Hi, I’m Krystian Załuski. Front-end React Developer from Poland,
             Warsaw
-          </h3>
+          </motion.h3>
 
-          <div className={style.linkContainer}>
-            <div className={style.githubContainer}>
-              <Image src={githubIcon} alt="GitHub" />
-            </div>
-            <div className={style.linkedinContainer}>
-              <Image src={linkedinIcon} alt="LinkedIn" />
-            </div>
-          </div>
+          <div className={style.linkContainer}>{link}</div>
         </div>
         <div className={style.techStack}>
-          <h4>Tech stack:</h4>
+          <motion.h4
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 2.2 }}
+          >
+            Tech stack:
+          </motion.h4>
           <div className={style.techStackIconContainer}>{tech}</div>
         </div>
       </div>
