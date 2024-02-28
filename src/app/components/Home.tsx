@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import style from "./style/Home.module.scss";
 import Image from "next/image";
 
-import { motion } from "framer-motion";
+import { cubicBezier, motion } from "framer-motion";
 
 import logoIcon from "../../../public/icon/logo.svg";
 
@@ -145,28 +145,61 @@ const Home: React.FC<HomeProps> = ({}) => {
     );
   });
 
+  const biggerRight = (
+    <motion.div
+      initial={{ opacity: 0, y: 200 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        delay: 3.8,
+        duration: 0.5,
+        type: "spring",
+        damping: 10,
+      }}
+      className={style.imgContainer}
+    >
+      <Image priority={true} src={meImg} alt="Krystian" />
+    </motion.div>
+  );
+  const smallerRight = (
+    <motion.div
+      initial={{ opacity: 0, rotate: -60 }}
+      animate={{ opacity: 1, rotate: 0 }}
+      transition={{
+        delay: 3.8,
+        duration: 0.5,
+        type: "spring",
+        damping: 10,
+      }}
+      className={style.imgContainer}
+    >
+      <Image priority={true} src={meSquareImg} alt="Krystian" />
+    </motion.div>
+  );
+
   return (
     <div className={style.Home}>
       <div className={style.right}>
-        <div className={style.circleContainer}>
+        <motion.div
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{
+            duration: 0.5,
+            delay: 3.3,
+            ease: cubicBezier(0.5, 0, 1, 0.5),
+          }}
+          className={style.circleContainer}
+        >
           <div className={style.logoContainer}>
             <Image src={logoIcon} alt="logo" />
           </div>
-          <div className={style.imgContainer}>
-            {/* daj tutaj potem window ale z useeffectu bo coś się kurwa spierdala chuj jebany kurwa */}
-            {/* {pageWidth ? (
-              pageWidth < 820 ? (
-                <Image priority={true} src={meSquareImg} alt="Krystian" />
-              ) : (
-                <Image priority={true} src={meImg} alt="Krystian" />
-              )
-            ) : window.innerWidth < 820 ? (
-              <Image priority={true} src={meSquareImg} alt="Krystian" />
-            ) : (
-              <Image priority={true} src={meImg} alt="Krystian" />
-            )} */}
-          </div>
-        </div>
+          {pageWidth
+            ? pageWidth < 820
+              ? smallerRight
+              : biggerRight
+            : window.innerWidth < 820
+            ? smallerRight
+            : biggerRight}
+        </motion.div>
       </div>
 
       <div className={style.left}>
