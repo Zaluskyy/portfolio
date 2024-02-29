@@ -22,86 +22,13 @@ import firebaseIcon from "../../../public/icon/tech/firebase.svg";
 import meSquareImg from "../../../public/img/me-square.png";
 import meImg from "../../../public/img/me2.png";
 import PortfolioContext from "../context/context";
+import FlyingChars from "./UI/FlyingChars";
 
 interface HomeProps {}
 
 const Home: React.FC<HomeProps> = ({}) => {
   const context = useContext(PortfolioContext);
   const { pageWidth } = context;
-
-  const random = () => Math.random() * 200;
-
-  const nameVariant = {
-    initial: {
-      x: random(),
-      y: random(),
-      opacity: 0,
-    },
-    animate: (id: number) => ({
-      x: 0,
-      y: 0,
-      opacity: 1,
-      scale: [0, 0.1, 0.5, 0.1, 1],
-      transition: {
-        duration: 0.06 * id + 0.6,
-        // duration: 0.4,
-        // delay: 0.1 * id + 0.1,
-      },
-    }),
-  };
-
-  const randomFromTo = (
-    fromX: number,
-    toX: number,
-    fromY: number,
-    toY: number
-  ) => {
-    const randomX = Math.random() * (toX - fromX) + fromX;
-    const randomY = Math.random() * (toY - fromY) + fromY;
-
-    return { x: randomX, y: randomY };
-  };
-
-  const randomArrF: any[] = [];
-  for (let i = 0; i < 23; i++) {
-    randomArrF.push(randomFromTo(-300, 300, -400, 400));
-  }
-  const [randomArr] = useState<any[]>(randomArrF);
-
-  const nameArr = ["Front-end", "React", "Developer"];
-
-  const charName = nameArr.map((item, index) => {
-    return item.split("").map((char, charIndex) => {
-      let id: number = 0;
-      if (index == 0) id = charIndex;
-      else if (index == 1) id = charIndex + nameArr[index - 1].length;
-      else if (index == 2)
-        id = charIndex + nameArr[index - 1].length + nameArr[index - 2].length;
-      return (
-        <motion.span
-          key={id}
-          variants={nameVariant}
-          initial={{ x: randomArr[id]?.x, y: randomArr[id]?.y, opacity: 0 }} //tu jest błąd
-          animate="animate"
-          custom={id}
-          drag
-          dragConstraints={{ left: 0, top: 0, right: 0, bottom: 0 }}
-          dragElastic={0.8}
-        >
-          {char}
-        </motion.span>
-      );
-    });
-  });
-
-  const name = charName.map((item, index) => {
-    return (
-      <div key={index}>
-        <span className={style.word}>{item}</span>
-        <span> </span>
-      </div>
-    );
-  });
 
   const linkArr = [
     { icon: githubIcon, name: "GitHub" },
@@ -204,7 +131,15 @@ const Home: React.FC<HomeProps> = ({}) => {
 
       <div className={style.left}>
         <div className={style.center}>
-          <h1>{name}</h1>
+          <h1>
+            <FlyingChars
+              name={"Front-end React Developer"}
+              fromX={-300}
+              toX={300}
+              fromY={-400}
+              toY={400}
+            />
+          </h1>
           <motion.h3
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}

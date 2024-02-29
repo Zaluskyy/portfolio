@@ -11,6 +11,7 @@
   align-items: center;
   gap: 20px;
   padding: 40px;
+  overflow: hidden;
 
   h2 {
     color: $orange;
@@ -20,12 +21,39 @@
   p {
     font-size: 20px;
     font-weight: $qui;
+    .name {
+      color: $orange;
+      cursor: pointer;
+    }
+  }
+
+  .imgContainer {
+    width: 100px;
+    height: 150px;
+    border: 2px solid white;
+    position: absolute;
+    border-radius: 9px;
+    overflow: hidden;
+
+    .background {
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(1px);
+      position: absolute;
+    }
+    img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 2;
+    }
   }
 }
 
 @media (min-width: 600px) {
   .About {
-    // background-color: red;
     h2 {
     }
     p {
