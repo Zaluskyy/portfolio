@@ -1,0 +1,100 @@
+@import "../../variables.scss";
+
+.ProjectCard {
+  width: 100%;
+  max-width: calc(450px - 80px);
+  background-color: $grayDark;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 12px;
+
+  .left {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .imgContainer {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 8px;
+      overflow: hidden;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    h3 {
+      font-size: 25px;
+      font-weight: $qui-b;
+      color: white;
+
+      //   align-self: flex-start;
+    }
+    p {
+      font-size: 14px;
+      font-weight: $qui;
+    }
+    .libraryContainer {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+
+      div {
+        padding: 5px 6px;
+        border-radius: 6px;
+        background-color: #666262;
+        span {
+          font-size: 14px;
+        }
+      }
+      div.main {
+        background-color: $orange;
+      }
+      div.seeMore {
+        background-color: #888787;
+        cursor: pointer;
+      }
+    }
+    .linkContainer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+
+      div {
+        // background-color: rgba(255, 255, 255, 0.1);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+        padding: 5px 6px;
+        border-radius: 6px;
+        span {
+          color: white;
+          font-size: 14px;
+        }
+        img {
+          width: 14px;
+          height: 14px;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+}

@@ -7,4 +7,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  div {
+    h2 {
+      color: $orange;
+      font-size: 30px;
+      font-weight: $qui-b;
+    }
+  }
+}
+
+@media (min-width: 1050px) {
+  .Page {
+    div {
+      h2 {
+        font-size: 37px;
+      }
+    }
+  }
 }

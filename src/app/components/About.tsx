@@ -30,7 +30,7 @@ const About: React.FC<HomeProps> = ({}) => {
 
   return (
     <div className={style.About}>
-      <h2 className={style.kurwa}>
+      <h2>
         <FlyingChars
           name={"About"}
           fromX={-300}
