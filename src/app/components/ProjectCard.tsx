@@ -1,9 +1,11 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect, useContext } from "react";
 import style from "./style/ProjectCard.module.scss";
 import Image from "next/image";
 
 import linkIcon from "../../../public/icon/link.svg";
 import githubIcon from "../../../public/icon/github.svg";
+import PortfolioContext from "../context/context";
 
 interface ILibraries {
   name: string;
@@ -23,30 +25,51 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   description,
   librariesArr,
 }) => {
+  const context = useContext(PortfolioContext);
+  const { pageWidth } = context;
+
   const linksArr = [
     { name: "Code", icon: githubIcon },
     { name: "Live", icon: linkIcon },
   ];
 
-  const libraries = librariesArr.map((item, index) => {
-    if (librariesArr.length == 3) {
+  const [selectedLibrariesArr, setSelectedLibrariesArr] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (pageWidth ? pageWidth < 920 : window.innerWidth < 920) {
+      const libraries = librariesArr.slice(0, 3);
+      setSelectedLibrariesArr(libraries);
+    } else {
+      const libraries = librariesArr.slice(0, 4);
+      setSelectedLibrariesArr(libraries);
+    }
+  }, [pageWidth]);
+
+  const libraries = selectedLibrariesArr.map((item, index) => {
+    // console.log(selectedLibrariesArr.length);
+    let showAllLibraries = false;
+    if (selectedLibrariesArr >= librariesArr) showAllLibraries = true;
+
+    if (showAllLibraries) {
       return (
         <div key={item.name} className={`${item.main ? style.main : ""}`}>
           <span>{item.name}</span>
         </div>
       );
-    } else if (index < 2) {
-      return (
-        <div key={item.name} className={`${item.main ? style.main : ""}`}>
-          <span>{item.name}</span>
-        </div>
-      );
-    } else if (index == 2) {
-      return (
-        <div key={item.name} className={style.seeMore}>
-          <span>See more...</span>
-        </div>
-      );
+    } else {
+      if (index < selectedLibrariesArr.length - 1) {
+        return (
+          <div key={item.name} className={`${item.main ? style.main : ""}`}>
+            <span>{item.name}</span>
+          </div>
+        );
+      } else {
+        return (
+          <div key={item.name} className={style.seeMore}>
+            <span>See more...</span>
+          </div>
+        );
+      }
     }
   });
 
@@ -69,8 +92,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       <div className={style.right}>
         <h3>{title}</h3>
         <p>{description}</p>
-        <div className={style.libraryContainer}>{libraries}</div>
-        <div className={style.linkContainer}>{links}</div>
+        <div className={style.bottomContainer}>
+          <div className={style.libraryContainer}>{libraries}</div>
+          <div className={style.linkContainer}>{links}</div>
+        </div>
       </div>
     </div>
   );

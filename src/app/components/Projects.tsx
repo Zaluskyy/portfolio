@@ -81,8 +81,7 @@ const Projects: React.FC<ProjectsProps> = ({}) => {
           startDelay={0.1}
         /> */}
       </h2>
-
-      {projects}
+      <div className={style.projectsContainer}>{projects}</div>
     </div>
   );
 };
