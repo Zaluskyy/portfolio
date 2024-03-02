@@ -34,19 +34,23 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   ];
 
   const [selectedLibrariesArr, setSelectedLibrariesArr] = useState<any[]>([]);
+  const [showMoreLibraries, setShowMoreLibraries] = useState<boolean>(false);
 
   useEffect(() => {
-    if (pageWidth ? pageWidth < 920 : window.innerWidth < 920) {
-      const libraries = librariesArr.slice(0, 3);
-      setSelectedLibrariesArr(libraries);
+    if (!showMoreLibraries) {
+      if (pageWidth ? pageWidth < 850 : window.innerWidth < 850) {
+        const libraries = librariesArr.slice(0, 3);
+        setSelectedLibrariesArr(libraries);
+      } else {
+        const libraries = librariesArr.slice(0, 4);
+        setSelectedLibrariesArr(libraries);
+      }
     } else {
-      const libraries = librariesArr.slice(0, 4);
-      setSelectedLibrariesArr(libraries);
+      setSelectedLibrariesArr(librariesArr);
     }
-  }, [pageWidth]);
+  }, [pageWidth, showMoreLibraries]);
 
   const libraries = selectedLibrariesArr.map((item, index) => {
-    // console.log(selectedLibrariesArr.length);
     let showAllLibraries = false;
     if (selectedLibrariesArr >= librariesArr) showAllLibraries = true;
 
@@ -65,7 +69,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         );
       } else {
         return (
-          <div key={item.name} className={style.seeMore}>
+          <div
+            key={item.name}
+            className={style.seeMore}
+            onClick={() => setShowMoreLibraries(true)}
+          >
             <span>See more...</span>
           </div>
         );

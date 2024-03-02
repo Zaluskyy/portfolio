@@ -23,7 +23,7 @@ const Projects: React.FC<ProjectsProps> = ({}) => {
 
   const projectsArr: IProjectsArr[] = [
     {
-      img: mechanicsPageImg,
+      img: zaluskyyShopImg,
       title: "ZaluskyyShop",
       description:
         "An e-commerce website for electronics. I designed the website in Figma. I implemented the front-end using Next.js. I created the back-end using Firebase. The website supports login, adding products to the cart, and the ordering process.",
@@ -41,7 +41,7 @@ const Projects: React.FC<ProjectsProps> = ({}) => {
       ],
     },
     {
-      img: zaluskyyShopImg,
+      img: mechanicsPageImg,
       title: "Mechanic-website",
       description:
         "Single-Page Application for a Mechanic. The website has been created to inform customers about the mechanical services offered by the company",

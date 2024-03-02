@@ -59,9 +59,10 @@
       .libraryContainer {
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         gap: 8px;
+        flex-wrap: wrap;
 
         div {
           padding: 5px 6px;
@@ -112,7 +113,7 @@
 
 @media (min-width: 850px) {
   .ProjectCard {
-    height: 509px;
+    min-height: 509px;
     justify-content: space-between;
     .right {
       justify-content: space-between;
@@ -121,8 +122,9 @@
   }
 }
 
-@media (min-width: 920px) {
+@media (min-width: 1000px) {
   .ProjectCard {
+    min-height: auto;
     height: auto;
     max-width: 1000px;
     flex-direction: row;
@@ -141,10 +143,10 @@
       height: auto;
 
       h3 {
-        font-size: 30px;
+        font-size: 27px;
       }
       p {
-        font-size: 16px;
+        font-size: 15px;
       }
     }
   }
@@ -154,10 +156,23 @@
   .ProjectCard {
     .right {
       h3 {
+        font-size: 30px;
+      }
+      p {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+@media (min-width: 1080px) {
+  .ProjectCard {
+    .right {
+      h3 {
         font-size: 32px;
       }
       p {
-        font-size: 18px;
+        font-size: 17px;
       }
       .bottomContainer {
         .linkContainer {

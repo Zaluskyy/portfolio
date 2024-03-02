@@ -23,14 +23,16 @@
     .projectsContainer {
       flex-direction: row;
       justify-content: center;
+      align-items: flex-start;
     }
   }
 }
 
-@media (min-width: 920px) {
+@media (min-width: 1000px) {
   .Projects {
     .projectsContainer {
       flex-direction: column;
+      align-items: center;
     }
   }
 }
