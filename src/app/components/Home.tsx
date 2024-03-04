@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import style from "./style/Home.module.scss";
 import Image from "next/image";
 
@@ -103,6 +103,16 @@ const Home: React.FC<HomeProps> = ({}) => {
     </motion.div>
   );
 
+  const [rightImg, setRightImg] = useState<any>(null);
+
+  useEffect(() => {
+    if (pageWidth ? pageWidth < 820 : window.innerWidth < 820)
+      setRightImg(smallerRight);
+    else {
+      setRightImg(biggerRight);
+    }
+  }, [pageWidth]);
+
   return (
     <div className={style.Home}>
       <div className={style.right}>
@@ -119,13 +129,7 @@ const Home: React.FC<HomeProps> = ({}) => {
           <div className={style.logoContainer}>
             <Image src={logoIcon} alt="logo" />
           </div>
-          {pageWidth
-            ? pageWidth < 820
-              ? smallerRight
-              : biggerRight
-            : window.innerWidth < 820
-            ? smallerRight
-            : biggerRight}
+          {rightImg}
         </motion.div>
       </div>
 
