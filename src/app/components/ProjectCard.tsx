@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import style from "./style/ProjectCard.module.scss";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 import linkIcon from "../../../public/icon/link.svg";
 import githubIcon from "../../../public/icon/github.svg";
@@ -13,6 +14,7 @@ interface ILibraries {
 }
 
 interface ProjectCardProps {
+  cardIndex: number;
   img: any;
   title: string;
   description: string;
@@ -20,6 +22,7 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
+  cardIndex,
   img,
   title,
   description,
@@ -35,15 +38,18 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
   const [selectedLibrariesArr, setSelectedLibrariesArr] = useState<any[]>([]);
   const [showMoreLibraries, setShowMoreLibraries] = useState<boolean>(false);
+  const [threeOrFour, setThreeOrFour] = useState<3 | 4>(3);
 
   useEffect(() => {
     if (!showMoreLibraries) {
       if (pageWidth ? pageWidth < 850 : window.innerWidth < 850) {
         const libraries = librariesArr.slice(0, 3);
         setSelectedLibrariesArr(libraries);
+        setThreeOrFour(3);
       } else {
         const libraries = librariesArr.slice(0, 4);
         setSelectedLibrariesArr(libraries);
+        setThreeOrFour(4);
       }
     } else {
       setSelectedLibrariesArr(librariesArr);
@@ -56,26 +62,42 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
     if (showAllLibraries) {
       return (
-        <div key={item.name} className={`${item.main ? style.main : ""}`}>
+        <motion.div
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: (index - threeOrFour) * 0.1 }}
+          key={item.name}
+          className={`${item.main ? style.main : ""}`}
+        >
           <span>{item.name}</span>
-        </div>
+        </motion.div>
       );
     } else {
       if (index < selectedLibrariesArr.length - 1) {
         return (
-          <div key={item.name} className={`${item.main ? style.main : ""}`}>
+          <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: index * 0.1 + 0.4 + cardIndex * 0.5 }}
+            key={item.name}
+            className={`${item.main ? style.main : ""}`}
+          >
             <span>{item.name}</span>
-          </div>
+          </motion.div>
         );
       } else {
         return (
-          <div
+          <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: index * 0.1 + 0.4 + cardIndex * 0.5 }}
+            exit={{ opacity: 0, scale: 0 }}
             key={item.name}
             className={style.seeMore}
             onClick={() => setShowMoreLibraries(true)}
           >
             <span>See more...</span>
-          </div>
+          </motion.div>
         );
       }
     }
@@ -91,7 +113,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   });
 
   return (
-    <div className={style.ProjectCard}>
+    <motion.div
+      initial={{ opacity: 0, x: 200 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: cardIndex * 0.5 + 0.3 }}
+      className={style.ProjectCard}
+    >
       <div className={style.left}>
         <div className={style.imgContainer}>
           <Image src={img} alt="page" />
@@ -105,7 +132,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           <div className={style.linkContainer}>{links}</div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

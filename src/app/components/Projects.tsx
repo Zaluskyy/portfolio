@@ -1,7 +1,9 @@
+"use client";
 import React from "react";
 import style from "./style/Projects.module.scss";
 import FlyingChars from "./UI/FlyingChars";
 import ProjectCard from "./ProjectCard";
+import { motion } from "framer-motion";
 
 import mechanicsPageImg from "../../../public/img/mechanicspage.png";
 import zaluskyyShopImg from "../../../public/img/zaluskyyshop.png";
@@ -55,9 +57,11 @@ const Projects: React.FC<ProjectsProps> = ({}) => {
     },
   ];
 
-  const projects = projectsArr.map((item) => {
+  const projects = projectsArr.map((item, index) => {
     return (
       <ProjectCard
+        key={item.title}
+        cardIndex={index}
         img={item.img}
         title={item.title}
         description={item.description}
@@ -68,7 +72,11 @@ const Projects: React.FC<ProjectsProps> = ({}) => {
 
   return (
     <div className={style.Projects}>
-      <h2>
+      <motion.h2
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.2, type: "spring", damping: 12 }}
+      >
         Projects
         {/* <FlyingChars
           name={"Projects"}
@@ -80,7 +88,7 @@ const Projects: React.FC<ProjectsProps> = ({}) => {
           delay={0.2}
           startDelay={0.1}
         /> */}
-      </h2>
+      </motion.h2>
       <div className={style.projectsContainer}>{projects}</div>
     </div>
   );
