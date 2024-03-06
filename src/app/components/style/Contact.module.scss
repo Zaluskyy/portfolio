@@ -1,0 +1,96 @@
+@import "../../variables.scss";
+
+$height: 60px;
+
+.Contact {
+  width: 100%;
+  background-color: $lightDark;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+
+    .button {
+      width: 100%;
+      height: $height;
+      background-color: #474343;
+      display: flex;
+      flex-direction: row;
+      border-radius: 6px;
+
+      text-decoration: none;
+      color: white;
+
+      .left {
+        width: $height;
+        height: $height;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          width: 60%;
+          height: 60%;
+        }
+      }
+      .right {
+        flex: 1;
+        padding: 5px 0;
+        padding-right: 10px;
+        height: $height;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        .name {
+          font-size: 15px;
+        }
+        .content {
+          font-size: 21px;
+        }
+      }
+      .rightCenter {
+        justify-content: center;
+      }
+    }
+
+    .buttonWithCopyContainer {
+      height: $height;
+      display: flex;
+      flex-direction: row;
+      border-radius: 6px;
+      overflow: hidden;
+
+      .button {
+        width: auto;
+        border-radius: 0;
+      }
+
+      .copyContainer {
+        width: $height;
+        height: $height;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #343030;
+
+        img {
+          width: 50%;
+          height: 50%;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 680px) {
+}
