@@ -51,10 +51,35 @@ const Contact: React.FC<ContactProps> = () => {
     },
   ];
 
-  const contactButtons = contactArr.map((item) => {
+  const contactVariant = {
+    initial: {
+      opacity: 0,
+      x: 500,
+      scale: 0,
+    },
+    animate: (index: number) => ({
+      opacity: 1,
+      x: 0,
+      scale: 1,
+
+      transition: {
+        duration: 0.3,
+        delay: 0.2 * index + 0.2,
+      },
+    }),
+  };
+
+  const contactButtons = contactArr.map((item, index) => {
     if (item.copy) {
       return (
-        <div key={item.content} className={style.buttonWithCopyContainer}>
+        <motion.div
+          variants={contactVariant}
+          initial="initial"
+          animate="animate"
+          custom={index}
+          key={item.content}
+          className={style.buttonWithCopyContainer}
+        >
           <a href={item.href} target="_blank" className={style.button}>
             <div className={style.left}>
               <Image
@@ -79,11 +104,15 @@ const Contact: React.FC<ContactProps> = () => {
               <Image src={copyIcon} alt="copy" />
             </div>
           </CopyToClipboard>
-        </div>
+        </motion.div>
       );
     } else if (item.name) {
       return (
-        <a
+        <motion.a
+          variants={contactVariant}
+          initial="initial"
+          animate="animate"
+          custom={index}
           key={item.content}
           href={item.href}
           target="_blank"
@@ -96,11 +125,15 @@ const Contact: React.FC<ContactProps> = () => {
             <span className={style.name}>{item.name}</span>
             <span className={style.content}>{item.content}</span>
           </div>
-        </a>
+        </motion.a>
       );
     } else {
       return (
-        <a
+        <motion.a
+          variants={contactVariant}
+          initial="initial"
+          animate="animate"
+          custom={index}
           key={item.content}
           href={item.href}
           target="_blank"
@@ -112,7 +145,7 @@ const Contact: React.FC<ContactProps> = () => {
           <div className={`${style.right} ${style.rightCenter}`}>
             <span className={style.content}>{item.content}</span>
           </div>
-        </a>
+        </motion.a>
       );
     }
   });
