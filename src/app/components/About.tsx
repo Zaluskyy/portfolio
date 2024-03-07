@@ -1,5 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, {
+  SetStateAction,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import style from "./style/About.module.scss";
 import Image from "next/image";
 import FlyingChars from "./UI/FlyingChars";
@@ -7,9 +13,28 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import meImg from "../../../public/img/me-square.png";
 
-interface HomeProps {}
+import { IComponentsHeight } from "../types/type";
+import PortfolioContext from "../context/context";
 
-const About: React.FC<HomeProps> = ({}) => {
+interface HomeProps {
+  setComponentsHeight: React.Dispatch<SetStateAction<IComponentsHeight>>;
+}
+
+const About: React.FC<HomeProps> = ({ setComponentsHeight }) => {
+  const context = useContext(PortfolioContext);
+  const { pageWidth } = context;
+
+  const aboutRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (aboutRef.current) {
+      setComponentsHeight((prev: IComponentsHeight) => ({
+        ...prev,
+        about: aboutRef.current?.offsetHeight ?? prev.home,
+      }));
+    }
+  }, [pageWidth]);
+
   const [imgPosition, setImgPosition] = useState<{ x: number; y: number }>({
     x: 0,
     y: 0,
@@ -29,7 +54,7 @@ const About: React.FC<HomeProps> = ({}) => {
   }, []);
 
   return (
-    <div className={style.About}>
+    <div className={style.About} ref={aboutRef}>
       <h2>
         <FlyingChars
           name={"About"}

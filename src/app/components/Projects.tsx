@@ -1,5 +1,11 @@
 "use client";
-import React from "react";
+import React, {
+  SetStateAction,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import style from "./style/Projects.module.scss";
 import FlyingChars from "./UI/FlyingChars";
 import ProjectCard from "./ProjectCard";
@@ -8,9 +14,14 @@ import { motion } from "framer-motion";
 import mechanicsPageImg from "../../../public/img/mechanicspage.png";
 import zaluskyyShopImg from "../../../public/img/zaluskyyshop.png";
 
-interface ProjectsProps {}
+import { IComponentsHeight } from "../types/type";
+import PortfolioContext from "../context/context";
 
-const Projects: React.FC<ProjectsProps> = ({}) => {
+interface ProjectsProps {
+  setComponentsHeight: React.Dispatch<SetStateAction<IComponentsHeight>>;
+}
+
+const Projects: React.FC<ProjectsProps> = ({ setComponentsHeight }) => {
   interface ILibraries {
     name: string;
     main?: boolean;
@@ -22,6 +33,23 @@ const Projects: React.FC<ProjectsProps> = ({}) => {
     description: string;
     librariesArr: ILibraries[];
   }
+
+  const [componentHeightChanged, setComponentHeightChanged] =
+    useState<number>(0);
+
+  const context = useContext(PortfolioContext);
+  const { pageWidth } = context;
+
+  const projectsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (projectsRef.current) {
+      setComponentsHeight((prev: IComponentsHeight) => ({
+        ...prev,
+        projects: projectsRef.current?.offsetHeight ?? prev.home,
+      }));
+    }
+  }, [pageWidth, componentHeightChanged]);
 
   const projectsArr: IProjectsArr[] = [
     {
@@ -66,12 +94,13 @@ const Projects: React.FC<ProjectsProps> = ({}) => {
         title={item.title}
         description={item.description}
         librariesArr={item.librariesArr}
+        setComponentHeightChanged={setComponentHeightChanged}
       />
     );
   });
 
   return (
-    <div className={style.Projects}>
+    <div className={style.Projects} ref={projectsRef}>
       <motion.h2
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}

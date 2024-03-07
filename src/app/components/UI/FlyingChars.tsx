@@ -52,7 +52,8 @@ const FlyingChars: React.FC<FlyingCharsProps> = ({
   const randomArrF: any[] = [];
 
   for (let i = 0; i < name.length - (name.split(" ").length - 1); i++) {
-    randomArrF.push(randomFromTo(fromX, toX, fromY, toY));
+    // randomArrF.push(randomFromTo(fromX, toX, fromY, toY)); //wróć do tego
+    randomArrF.push(2); // zamiast tego
   }
   const [randomArr] = useState<any[]>(randomArrF);
 

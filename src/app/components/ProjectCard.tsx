@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, SetStateAction } from "react";
 import style from "./style/ProjectCard.module.scss";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -19,6 +19,7 @@ interface ProjectCardProps {
   title: string;
   description: string;
   librariesArr: ILibraries[];
+  setComponentHeightChanged: React.Dispatch<SetStateAction<number>>;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -27,6 +28,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   title,
   description,
   librariesArr,
+  setComponentHeightChanged,
 }) => {
   const context = useContext(PortfolioContext);
   const { pageWidth } = context;
@@ -39,6 +41,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   const [selectedLibrariesArr, setSelectedLibrariesArr] = useState<any[]>([]);
   const [showMoreLibraries, setShowMoreLibraries] = useState<boolean>(false);
   const [threeOrFour, setThreeOrFour] = useState<3 | 4>(3);
+
+  useEffect(() => {
+    setComponentHeightChanged((prev) => prev + 1);
+  }, [showMoreLibraries]);
 
   useEffect(() => {
     if (!showMoreLibraries) {

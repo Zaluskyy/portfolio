@@ -27,7 +27,7 @@ $navHeight: 60px;
     .logoContainer {
       width: 30px;
       height: 30px;
-      img {
+      svg {
         width: 100%;
         height: 100%;
       }
@@ -103,8 +103,6 @@ $navHeight: 60px;
         transition: 0.2s;
       }
 
-      div:nth-child(1) {
-      }
       div:nth-child(2) {
         left: 0;
         top: 50%;

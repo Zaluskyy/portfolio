@@ -1,5 +1,11 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import React, {
+  SetStateAction,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import style from "./style/Home.module.scss";
 import Image from "next/image";
 
@@ -24,11 +30,26 @@ import meImg from "../../../public/img/me2.png";
 import PortfolioContext from "../context/context";
 import FlyingChars from "./UI/FlyingChars";
 
-interface HomeProps {}
+import { IComponentsHeight } from "../types/type";
 
-const Home: React.FC<HomeProps> = ({}) => {
+interface HomeProps {
+  setComponentsHeight: React.Dispatch<SetStateAction<IComponentsHeight>>;
+}
+
+const Home: React.FC<HomeProps> = ({ setComponentsHeight }) => {
   const context = useContext(PortfolioContext);
   const { pageWidth } = context;
+
+  const homeRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (homeRef.current) {
+      setComponentsHeight((prev: IComponentsHeight) => ({
+        ...prev,
+        home: homeRef.current?.offsetHeight ?? prev.home,
+      }));
+    }
+  }, [pageWidth]);
 
   const linkArr = [
     { icon: githubIcon, name: "GitHub" },
@@ -114,7 +135,7 @@ const Home: React.FC<HomeProps> = ({}) => {
   }, [pageWidth]);
 
   return (
-    <div className={style.Home}>
+    <div className={style.Home} ref={homeRef}>
       <div className={style.right}>
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
