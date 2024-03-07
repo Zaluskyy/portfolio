@@ -4,3 +4,5 @@ export interface IComponentsHeight {
     about: number;
     projects: number;
   }
+
+export type IMenuArr = "HOME" | "ABOUT" | "PROJECTS" | "CONTACT";

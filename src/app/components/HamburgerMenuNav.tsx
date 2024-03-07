@@ -1,13 +1,22 @@
 "use client";
-import React from "react";
+import React, { SetStateAction } from "react";
 import style from "../components/style/HamburgerMenuNav.module.scss";
 
 import { motion } from "framer-motion";
+import { IMenuArr } from "../types/type";
 
-interface HamburgerMenuNavProps {}
+interface HamburgerMenuNavProps {
+  setWhere: React.Dispatch<SetStateAction<IMenuArr>>;
+  setMenuClick: React.Dispatch<SetStateAction<number>>;
+  setHamburgerMenu: React.Dispatch<SetStateAction<boolean>>;
+}
 
-const HamburgerMenuNav: React.FC<HamburgerMenuNavProps> = ({}) => {
-  const liArr: string[] = ["HOME", "ABOUT", "PROJECTS", "CONTACT"];
+const HamburgerMenuNav: React.FC<HamburgerMenuNavProps> = ({
+  setWhere,
+  setMenuClick,
+  setHamburgerMenu,
+}) => {
+  const liArr: IMenuArr[] = ["HOME", "ABOUT", "PROJECTS", "CONTACT"];
 
   const liVariant = {
     initial: { opacity: 0, y: -20 },
@@ -24,6 +33,12 @@ const HamburgerMenuNav: React.FC<HamburgerMenuNavProps> = ({}) => {
   };
 
   const li = liArr.map((item, index) => {
+    const scroll = () => {
+      setWhere(item);
+      setMenuClick((prev) => prev + 1);
+      setHamburgerMenu(false);
+    };
+
     return (
       <motion.li
         key={item}
@@ -32,6 +47,7 @@ const HamburgerMenuNav: React.FC<HamburgerMenuNavProps> = ({}) => {
         animate="animate"
         exit="exit"
         custom={[index, liArr.length]}
+        onClick={scroll}
       >
         {item}
       </motion.li>

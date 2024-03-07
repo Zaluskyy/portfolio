@@ -22,7 +22,6 @@ export default function RootLayout({
     <html lang="en">
       <PortfolioContextProvider>
         <body className={quicksand.className}>
-          <Nav />
           {children}
           <Toaster position="bottom-center" />
         </body>

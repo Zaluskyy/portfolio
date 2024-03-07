@@ -1,13 +1,17 @@
 "use client";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, SetStateAction } from "react";
 import style from "./style/Nav.module.scss";
 import { AnimatePresence, motion } from "framer-motion";
 import HamburgerMenuNav from "./HamburgerMenuNav";
 import PortfolioContext from "../context/context";
+import { IMenuArr } from "../types/type";
 
-interface NavProps {}
+interface NavProps {
+  setWhere: React.Dispatch<SetStateAction<IMenuArr>>;
+  setMenuClick: React.Dispatch<SetStateAction<number>>;
+}
 
-const Nav: React.FC<NavProps> = ({}) => {
+const Nav: React.FC<NavProps> = ({ setWhere, setMenuClick }) => {
   const context = useContext(PortfolioContext);
   const { setPageWidth } = context;
   const [hamburgerMenu, setHamburgerMenu] = useState<boolean>(false);
@@ -34,6 +38,21 @@ const Nav: React.FC<NavProps> = ({}) => {
       window.removeEventListener("resize", getSize);
     };
   }, []);
+
+  const menuArr: IMenuArr[] = ["HOME", "ABOUT", "PROJECTS", "CONTACT"];
+
+  const menu = menuArr.map((item: IMenuArr) => {
+    const scroll = () => {
+      setWhere(item);
+      setMenuClick((prev) => prev + 1);
+    };
+
+    return (
+      <li key={item} onClick={scroll}>
+        {item}
+      </li>
+    );
+  });
 
   const logoSVG = (
     <svg
@@ -98,14 +117,17 @@ const Nav: React.FC<NavProps> = ({}) => {
         </div>
       </div>
 
-      <ul className={style.menu}>
-        <li>HOME</li>
-        <li>ABOUT</li>
-        <li>PROJECTS</li>
-        <li>CONTACT</li>
-      </ul>
+      <ul className={style.menu}>{menu}</ul>
 
-      <AnimatePresence>{hamburgerMenu && <HamburgerMenuNav />}</AnimatePresence>
+      <AnimatePresence>
+        {hamburgerMenu && (
+          <HamburgerMenuNav
+            setWhere={setWhere}
+            setMenuClick={setMenuClick}
+            setHamburgerMenu={setHamburgerMenu}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 };
