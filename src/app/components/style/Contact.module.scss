@@ -82,6 +82,7 @@ $height: 60px;
         justify-content: center;
         align-items: center;
         background-color: #343030;
+        cursor: pointer;
 
         img {
           width: 50%;
@@ -92,5 +93,22 @@ $height: 60px;
   }
 }
 
-@media (min-width: 680px) {
+@media (min-width: 700px) {
+  $width: 332px;
+  .Contact {
+    .container {
+      flex-direction: row;
+      flex-wrap: wrap;
+      .button {
+        width: $width;
+      }
+
+      .buttonWithCopyContainer {
+        width: $width;
+        .button {
+          width: calc($width - $height);
+        }
+      }
+    }
+  }
 }
