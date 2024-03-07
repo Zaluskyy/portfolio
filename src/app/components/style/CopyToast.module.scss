@@ -1,0 +1,13 @@
+@import "../../variables.scss";
+
+.CopyToast {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  background-color: $dark;
+  border: 1px solid $lightDark;
+  padding: 10px;
+  border-radius: 12px;
+}

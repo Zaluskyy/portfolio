@@ -3,6 +3,7 @@ import { Quicksand } from "next/font/google";
 import "./globals.scss";
 import Nav from "./components/Nav";
 import { PortfolioContextProvider } from "./context/context";
+import { Toaster } from "react-hot-toast";
 
 const quicksand = Quicksand({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
         <body className={quicksand.className}>
           <Nav />
           {children}
+          <Toaster position="bottom-center" />
         </body>
       </PortfolioContextProvider>
     </html>

@@ -10,6 +10,10 @@ import instagramIcon from "../../../public/icon/instagram.svg";
 import linkedinIcon from "../../../public/icon/linkedinOrange.svg";
 import copyIcon from "../../../public/icon/copy.svg";
 
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import toast from "react-hot-toast";
+import CopyToast from "./CopyToast";
+
 interface ContactProps {}
 
 const Contact: React.FC<ContactProps> = () => {
@@ -63,9 +67,18 @@ const Contact: React.FC<ContactProps> = () => {
               <span className={style.content}>{item.content}</span>
             </div>
           </a>
-          <div className={style.copyContainer}>
-            <Image src={copyIcon} alt="copy" />
-          </div>
+          <CopyToClipboard
+            text="kryzal77@gmail.com"
+            onCopy={() =>
+              toast.custom(() => {
+                return <CopyToast />;
+              })
+            }
+          >
+            <div className={style.copyContainer}>
+              <Image src={copyIcon} alt="copy" />
+            </div>
+          </CopyToClipboard>
         </div>
       );
     } else if (item.name) {
