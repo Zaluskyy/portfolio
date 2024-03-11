@@ -52,20 +52,26 @@ const Home: React.FC<HomeProps> = ({ setComponentsHeight }) => {
   }, [pageWidth]);
 
   const linkArr = [
-    { icon: githubIcon, name: "GitHub" },
-    { icon: linkedinIcon, name: "LinkedIn" },
+    { icon: githubIcon, name: "GitHub", href: "https://github.com/zaluskyy" },
+    {
+      icon: linkedinIcon,
+      name: "LinkedIn",
+      href: "https://www.linkedin.com/in/krystian-zaluski",
+    },
   ];
 
   const link = linkArr.map((item, index) => {
     return (
-      <motion.div
+      <motion.a
+        href={item.href}
+        target="_blank"
         key={item.name}
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.1 * index + 1.8, duration: 0.5 }}
       >
         <Image src={item.icon} alt={item.name} />
-      </motion.div>
+      </motion.a>
     );
   });
 

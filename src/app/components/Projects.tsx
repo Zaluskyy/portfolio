@@ -32,6 +32,7 @@ const Projects: React.FC<ProjectsProps> = ({ setComponentsHeight }) => {
     title: string;
     description: string;
     librariesArr: ILibraries[];
+    href: { code: string; live: string };
   }
 
   const [componentHeightChanged, setComponentHeightChanged] =
@@ -69,6 +70,10 @@ const Projects: React.FC<ProjectsProps> = ({ setComponentsHeight }) => {
         { name: "React-hot-toast" },
         { name: "Dotenv" },
       ],
+      href: {
+        code: "https://github.com/Zaluskyy/ecommerce",
+        live: "https://zaluskyyshop.vercel.app",
+      },
     },
     {
       img: mechanicsPageImg,
@@ -82,6 +87,10 @@ const Projects: React.FC<ProjectsProps> = ({ setComponentsHeight }) => {
         { name: "React-Leaflet" },
         { name: "React-copy-to-clickboard" },
       ],
+      href: {
+        code: "https://github.com/Zaluskyy/Mechanic-Website",
+        live: "https://tadeuszaluski.netlify.app",
+      },
     },
   ];
 
@@ -95,6 +104,7 @@ const Projects: React.FC<ProjectsProps> = ({ setComponentsHeight }) => {
         description={item.description}
         librariesArr={item.librariesArr}
         setComponentHeightChanged={setComponentHeightChanged}
+        href={item.href}
       />
     );
   });

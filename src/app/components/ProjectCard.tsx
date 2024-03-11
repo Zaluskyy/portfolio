@@ -20,6 +20,7 @@ interface ProjectCardProps {
   description: string;
   librariesArr: ILibraries[];
   setComponentHeightChanged: React.Dispatch<SetStateAction<number>>;
+  href: { code: string; live: string };
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -29,13 +30,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   description,
   librariesArr,
   setComponentHeightChanged,
+  href,
 }) => {
   const context = useContext(PortfolioContext);
   const { pageWidth } = context;
 
   const linksArr = [
-    { name: "Code", icon: githubIcon },
-    { name: "Live", icon: linkIcon },
+    { name: "Code", icon: githubIcon, href: href.code },
+    { name: "Live", icon: linkIcon, href: href.live },
   ];
 
   const [selectedLibrariesArr, setSelectedLibrariesArr] = useState<any[]>([]);
@@ -111,10 +113,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
   const links = linksArr.map((item) => {
     return (
-      <div key={item.name}>
+      <a key={item.name} href={item.href} target="_blank">
         <span>{item.name}</span>
         <Image src={item.icon} alt={item.name} />
-      </div>
+      </a>
     );
   });
 
@@ -126,9 +128,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       className={style.ProjectCard}
     >
       <div className={style.left}>
-        <div className={style.imgContainer}>
+        <a href={href.live} target="_blank" className={style.imgContainer}>
           <Image src={img} alt="page" />
-        </div>
+        </a>
       </div>
       <div className={style.right}>
         <h3>{title}</h3>
