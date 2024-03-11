@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { IMenuArr } from "../types/type";
 
 interface HamburgerMenuNavProps {
-  setWhere: React.Dispatch<SetStateAction<IMenuArr>>;
+  setWhere: React.Dispatch<SetStateAction<IMenuArr | null>>;
   setMenuClick: React.Dispatch<SetStateAction<number>>;
   setHamburgerMenu: React.Dispatch<SetStateAction<boolean>>;
 }

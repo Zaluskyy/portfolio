@@ -7,7 +7,7 @@ import PortfolioContext from "../context/context";
 import { IMenuArr } from "../types/type";
 
 interface NavProps {
-  setWhere: React.Dispatch<SetStateAction<IMenuArr>>;
+  setWhere: React.Dispatch<SetStateAction<IMenuArr | null>>;
   setMenuClick: React.Dispatch<SetStateAction<number>>;
 }
 

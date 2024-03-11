@@ -1,0 +1,76 @@
+@import "../../variables.scss";
+
+.Footer {
+  width: 100%;
+  padding: 20px;
+  background-color: $dark;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  .left {
+    h5 {
+      font-size: 12px;
+
+      a {
+        text-decoration: none;
+        color: $orange;
+      }
+    }
+  }
+  .right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+
+    span {
+      font-size: 10px;
+    }
+    img {
+      width: 15px;
+      height: 15px;
+    }
+  }
+}
+
+@media (min-width: 400px) {
+  .Footer {
+    .left {
+      h5 {
+        font-size: 15px;
+      }
+    }
+    .right {
+      span {
+        font-size: 13px;
+      }
+      img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+}
+@media (min-width: 650px) {
+  .Footer {
+    padding: 20px 50px;
+    .left {
+      h5 {
+        font-size: 20px;
+      }
+    }
+    .right {
+      span {
+        font-size: 16px;
+      }
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+}

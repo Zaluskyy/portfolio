@@ -9,6 +9,7 @@ import styles from "./page.module.scss";
 
 import { IComponentsHeight, IMenuArr } from "./types/type";
 import Nav from "./components/Nav";
+import Footer from "./components/Footer";
 
 export default function App() {
   const [componentsHeight, setComponentsHeight] = useState<IComponentsHeight>({
@@ -18,7 +19,7 @@ export default function App() {
     projects: 0,
   });
 
-  const [where, setWhere] = useState<IMenuArr>("HOME");
+  const [where, setWhere] = useState<IMenuArr | null>(null);
   const [menuClick, setMenuClick] = useState<number>(0);
 
   useEffect(() => {
@@ -37,7 +38,7 @@ export default function App() {
         componentsHeight.projects;
     }
 
-    if (top) {
+    if (top !== null) {
       window.scrollTo({
         top,
         behavior: "smooth",
@@ -52,6 +53,7 @@ export default function App() {
       <About setComponentsHeight={setComponentsHeight} />
       <Projects setComponentsHeight={setComponentsHeight} />
       <Contact />
+      <Footer setWhere={setWhere} setMenuClick={setMenuClick} />
     </div>
   );
 }
