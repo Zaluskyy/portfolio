@@ -1,8 +1,8 @@
 "use client";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import style from "./style/Contact.module.scss";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useAnimation, useInView } from "framer-motion";
 
 import callIcon from "../../../public/icon/call.svg";
 import mailIcon from "../../../public/icon/mail.svg";
@@ -17,6 +17,15 @@ import CopyToast from "./CopyToast";
 interface ContactProps {}
 
 const Contact: React.FC<ContactProps> = () => {
+  const contactRef = useRef(null);
+
+  const isInView = useInView(contactRef, { once: true });
+  const mainControls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) mainControls.start("animate");
+  }, [isInView]);
+
   interface IcontactArr {
     name?: string;
     content: string;
@@ -75,7 +84,7 @@ const Contact: React.FC<ContactProps> = () => {
         <motion.div
           variants={contactVariant}
           initial="initial"
-          animate="animate"
+          animate={mainControls}
           custom={index}
           key={item.content}
           className={style.buttonWithCopyContainer}
@@ -111,7 +120,7 @@ const Contact: React.FC<ContactProps> = () => {
         <motion.a
           variants={contactVariant}
           initial="initial"
-          animate="animate"
+          animate={mainControls}
           custom={index}
           key={item.content}
           href={item.href}
@@ -132,7 +141,7 @@ const Contact: React.FC<ContactProps> = () => {
         <motion.a
           variants={contactVariant}
           initial="initial"
-          animate="animate"
+          animate={mainControls}
           custom={index}
           key={item.content}
           href={item.href}
@@ -150,17 +159,27 @@ const Contact: React.FC<ContactProps> = () => {
     }
   });
 
+  const h2Variant = {
+    initial: {
+      opacity: 0,
+      scale: 0,
+    },
+    animate: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.2, type: "spring", damping: 12 },
+    },
+  };
+
   return (
     <div className={style.Contact}>
-      <motion.h2
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.2, type: "spring", damping: 12 }}
-      >
+      <motion.h2 variants={h2Variant} initial="initial" animate={mainControls}>
         Contact
       </motion.h2>
 
-      <div className={style.container}>{contactButtons}</div>
+      <div ref={contactRef} className={style.container}>
+        {contactButtons}
+      </div>
     </div>
   );
 };

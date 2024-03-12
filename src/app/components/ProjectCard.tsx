@@ -1,8 +1,14 @@
 "use client";
-import React, { useState, useEffect, useContext, SetStateAction } from "react";
+import React, {
+  useState,
+  useEffect,
+  useContext,
+  SetStateAction,
+  useRef,
+} from "react";
 import style from "./style/ProjectCard.module.scss";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useAnimation, useInView } from "framer-motion";
 
 import linkIcon from "../../../public/icon/link.svg";
 import githubIcon from "../../../public/icon/github.svg";
@@ -35,6 +41,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   const context = useContext(PortfolioContext);
   const { pageWidth } = context;
 
+  const cardRef = useRef(null);
+
+  const isInView = useInView(cardRef, { once: true });
+  const mainControls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) mainControls.start("animate");
+  }, [isInView]);
+
   const linksArr = [
     { name: "Code", icon: githubIcon, href: href.code },
     { name: "Live", icon: linkIcon, href: href.live },
@@ -64,6 +79,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     }
   }, [pageWidth, showMoreLibraries]);
 
+  const libraryVariant = {
+    initial: {
+      opacity: 0,
+      scale: 0,
+    },
+    animate: {
+      opacity: 1,
+      scale: 1,
+    },
+  };
+
   const libraries = selectedLibrariesArr.map((item, index) => {
     let showAllLibraries = false;
     if (selectedLibrariesArr >= librariesArr) showAllLibraries = true;
@@ -71,8 +97,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     if (showAllLibraries) {
       return (
         <motion.div
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
+          variants={libraryVariant}
+          initial="initial"
+          animate="animate"
           transition={{ delay: (index - threeOrFour) * 0.1 }}
           key={item.name}
           className={`${item.main ? style.main : ""}`}
@@ -84,9 +111,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       if (index < selectedLibrariesArr.length - 1) {
         return (
           <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: index * 0.1 + 0.4 + cardIndex * 0.5 }}
+            variants={libraryVariant}
+            initial="initial"
+            animate={mainControls}
+            transition={{ delay: index * 0.1 + 0.9 }}
             key={item.name}
             className={`${item.main ? style.main : ""}`}
           >
@@ -96,9 +124,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       } else {
         return (
           <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: index * 0.1 + 0.4 + cardIndex * 0.5 }}
+            variants={libraryVariant}
+            initial="initial"
+            animate={mainControls}
+            transition={{ delay: index * 0.1 + 0.9 }}
             exit={{ opacity: 0, scale: 0 }}
             key={item.name}
             className={style.seeMore}
@@ -120,11 +149,24 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     );
   });
 
+  const cardVariant = {
+    initial: {
+      opacity: 0,
+      x: 200,
+    },
+    animate: () => ({
+      opacity: 1,
+      x: 0,
+      transition: { delay: cardIndex * 0 + 0.5 },
+    }),
+  };
+
   return (
     <motion.div
-      initial={{ opacity: 0, x: 200 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ delay: cardIndex * 0.5 + 0.3 }}
+      ref={cardRef}
+      variants={cardVariant}
+      initial="initial"
+      animate={mainControls}
       className={style.ProjectCard}
     >
       <div className={style.left}>

@@ -7,9 +7,8 @@ import React, {
   useState,
 } from "react";
 import style from "./style/Projects.module.scss";
-import FlyingChars from "./UI/FlyingChars";
 import ProjectCard from "./ProjectCard";
-import { motion } from "framer-motion";
+import { motion, useAnimation, useInView } from "framer-motion";
 
 import mechanicsPageImg from "../../../public/img/mechanicspage.png";
 import zaluskyyShopImg from "../../../public/img/zaluskyyshop.png";
@@ -42,6 +41,14 @@ const Projects: React.FC<ProjectsProps> = ({ setComponentsHeight }) => {
   const { pageWidth } = context;
 
   const projectsRef = useRef<HTMLDivElement>(null);
+  const h2Ref = useRef(null);
+
+  const isInView = useInView(h2Ref, { once: true });
+  const mainControls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) mainControls.start("animate");
+  }, [isInView]);
 
   useEffect(() => {
     if (projectsRef.current) {
@@ -109,24 +116,27 @@ const Projects: React.FC<ProjectsProps> = ({ setComponentsHeight }) => {
     );
   });
 
+  const h2Variant = {
+    initial: {
+      opacity: 0,
+      scale: 0,
+    },
+    animate: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.2, type: "spring", damping: 12 },
+    },
+  };
+
   return (
     <div className={style.Projects} ref={projectsRef}>
       <motion.h2
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.2, type: "spring", damping: 12 }}
+        ref={h2Ref}
+        variants={h2Variant}
+        initial="initial"
+        animate={mainControls}
       >
         Projects
-        {/* <FlyingChars
-          name={"Projects"}
-          fromX={-300}
-          toX={300}
-          fromY={-400}
-          toY={400}
-          duration={0.8}
-          delay={0.2}
-          startDelay={0.1}
-        /> */}
       </motion.h2>
       <div className={style.projectsContainer}>{projects}</div>
     </div>

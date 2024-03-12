@@ -8,8 +8,12 @@ import React, {
 } from "react";
 import style from "./style/About.module.scss";
 import Image from "next/image";
-import FlyingChars from "./UI/FlyingChars";
-import { AnimatePresence, motion } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useInView,
+  useAnimation,
+} from "framer-motion";
 
 import meImg from "../../../public/img/me-square.png";
 
@@ -25,6 +29,14 @@ const About: React.FC<HomeProps> = ({ setComponentsHeight }) => {
   const { pageWidth } = context;
 
   const aboutRef = useRef<HTMLDivElement>(null);
+  const descriptionRef = useRef(null);
+
+  const isInView = useInView(descriptionRef, { once: true });
+  const mainControls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) mainControls.start("animate");
+  }, [isInView]);
 
   useEffect(() => {
     if (aboutRef.current) {
@@ -53,26 +65,46 @@ const About: React.FC<HomeProps> = ({ setComponentsHeight }) => {
     };
   }, []);
 
+  const h2Variant = {
+    initial: {
+      opacity: 0,
+      y: 75,
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, delay: 0.2, type: "spring", damping: 12 },
+    },
+  };
+  const pVariant = {
+    initial: {
+      opacity: 0,
+      y: 75,
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        delay: 0.4,
+        type: "spring",
+        damping: 12,
+      },
+    },
+  };
+
   return (
     <div className={style.About} ref={aboutRef}>
-      <h2>
-        <FlyingChars
-          name={"About"}
-          fromX={-300}
-          toX={300}
-          fromY={-400}
-          toY={400}
-          duration={0.8}
-          delay={0.2}
-          startDelay={0.1}
-        />
-      </h2>
-
-      <motion.p
-        initial={{ opacity: 0, y: -100 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
+      <motion.h2
+        ref={descriptionRef}
+        variants={h2Variant}
+        initial="initial"
+        animate={mainControls}
       >
+        About
+      </motion.h2>
+
+      <motion.p variants={pVariant} initial="initial" animate={mainControls}>
         I am{" "}
         <span
           className={style.name}
