@@ -36,6 +36,7 @@ $navHeight: 60px;
       padding: 0;
       font-size: 25px;
       font-weight: $qui-b;
+      color: white;
     }
   }
 
@@ -52,6 +53,7 @@ $navHeight: 60px;
       font-weight: $qui;
       cursor: pointer;
       position: relative;
+      color: white;
 
       &::before {
         content: "";
