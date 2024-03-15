@@ -26,7 +26,7 @@ export default function App() {
 
   const [logoAnimation, setLogoAnimation] = useState<boolean>(false);
 
-  useEffect(() => {
+  const scroll = () => {
     let top: number | null = null;
     if (where == "HOME") top = 0;
     else if (where == "ABOUT") {
@@ -43,23 +43,29 @@ export default function App() {
     }
 
     if (top !== null) {
-      setLogoAnimation(true);
       window.scrollTo({
         top,
-        behavior: "smooth",
+        behavior: "instant",
       });
     }
-  }, [where, menuClick]);
+  };
 
   useEffect(() => {
     let timeId = setTimeout(() => {
       setLogoAnimation(false);
+      scroll();
     }, 700);
 
     return () => {
       clearTimeout(timeId);
     };
   }, [logoAnimation]);
+
+  useEffect(() => {
+    if (menuClick !== 0) {
+      setLogoAnimation(true);
+    }
+  }, [where, menuClick]);
 
   return (
     <div className={styles.Page}>
