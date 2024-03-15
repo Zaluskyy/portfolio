@@ -10,6 +10,8 @@ import styles from "./page.module.scss";
 import { IComponentsHeight, IMenuArr } from "./types/type";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
+import LogoAnimation from "./components/UI/LogoAnimation";
+import { AnimatePresence } from "framer-motion";
 
 export default function App() {
   const [componentsHeight, setComponentsHeight] = useState<IComponentsHeight>({
@@ -21,6 +23,8 @@ export default function App() {
 
   const [where, setWhere] = useState<IMenuArr | null>(null);
   const [menuClick, setMenuClick] = useState<number>(0);
+
+  const [logoAnimation, setLogoAnimation] = useState<boolean>(false);
 
   useEffect(() => {
     let top: number | null = null;
@@ -39,6 +43,7 @@ export default function App() {
     }
 
     if (top !== null) {
+      setLogoAnimation(true);
       window.scrollTo({
         top,
         behavior: "smooth",
@@ -46,8 +51,19 @@ export default function App() {
     }
   }, [where, menuClick]);
 
+  useEffect(() => {
+    let timeId = setTimeout(() => {
+      setLogoAnimation(false);
+    }, 700);
+
+    return () => {
+      clearTimeout(timeId);
+    };
+  }, [logoAnimation]);
+
   return (
     <div className={styles.Page}>
+      <AnimatePresence>{logoAnimation && <LogoAnimation />}</AnimatePresence>
       <Nav setWhere={setWhere} setMenuClick={setMenuClick} />
       <Home setComponentsHeight={setComponentsHeight} />
       <About setComponentsHeight={setComponentsHeight} />
