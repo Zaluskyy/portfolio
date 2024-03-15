@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   title: "Krystian Załuski",
   description:
     "Hi, I’m Krystian Załuski. Front-end React Developer from Poland, Warsaw ",
+  verification: {
+    google: "VxhVBS9PD1d3IF0B3-bOFskK2NNjdBjZI1bqZe4Je3E",
+  },
 };
 
 export default function RootLayout({
