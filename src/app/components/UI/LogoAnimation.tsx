@@ -7,9 +7,12 @@ import { cubicBezier, motion } from "framer-motion";
 interface LogoAnimationProps {}
 
 const LogoAnimation: React.FC<LogoAnimationProps> = () => {
-  const damping = 20;
-  const stiffness = 120;
+  const damping = 35;
+  const stiffness = 400;
   const exitDuration = 0.2;
+
+  const distance = 50;
+  const initialOpacity = 1;
 
   return (
     <motion.div
@@ -27,17 +30,18 @@ const LogoAnimation: React.FC<LogoAnimationProps> = () => {
         xmlns="http://www.w3.org/2000/svg"
       >
         <motion.path
-          initial={{ x: -100, y: 100, opacity: 0 }}
+          initial={{ x: -distance, y: distance, opacity: initialOpacity }}
           animate={{ x: 0, y: 0, opacity: 1 }}
           transition={{
             type: "spring",
             damping,
             stiffness,
+            duration: 0.1,
           }}
           exit={{
             x: 100,
             y: 100,
-            opacity: 0,
+            opacity: initialOpacity,
             transition: {
               duration: exitDuration,
               //   ease: cubicBezier(1, 0, 0, 1),
@@ -49,7 +53,7 @@ const LogoAnimation: React.FC<LogoAnimationProps> = () => {
           strokeWidth="1.5"
         />
         <motion.path
-          initial={{ x: 100, y: 100, opacity: 0 }}
+          initial={{ x: distance, y: distance, opacity: initialOpacity }}
           animate={{ x: 0, y: 0, opacity: 1 }}
           transition={{
             type: "spring",
@@ -59,7 +63,7 @@ const LogoAnimation: React.FC<LogoAnimationProps> = () => {
           exit={{
             x: -100,
             y: -100,
-            opacity: 0,
+            opacity: initialOpacity,
             transition: {
               duration: exitDuration,
               //   ease: cubicBezier(1, 0, 0, 1),
@@ -71,7 +75,7 @@ const LogoAnimation: React.FC<LogoAnimationProps> = () => {
           strokeWidth="1.5"
         />
         <motion.path
-          initial={{ x: 100, y: -100, opacity: 0 }}
+          initial={{ x: distance, y: -distance, opacity: initialOpacity }}
           animate={{ x: 0, y: 0, opacity: 1 }}
           transition={{
             type: "spring",
@@ -81,7 +85,7 @@ const LogoAnimation: React.FC<LogoAnimationProps> = () => {
           exit={{
             x: 100,
             y: 100,
-            opacity: 0,
+            opacity: initialOpacity,
             transition: {
               duration: exitDuration,
               //   ease: cubicBezier(1, 0, 0, 1),

@@ -54,7 +54,7 @@ export default function App() {
     let timeId = setTimeout(() => {
       setLogoAnimation(false);
       scroll();
-    }, 700);
+    }, 400);
 
     return () => {
       clearTimeout(timeId);
