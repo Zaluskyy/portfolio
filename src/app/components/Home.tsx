@@ -9,7 +9,7 @@ import React, {
 import style from "./style/Home.module.scss";
 import Image from "next/image";
 
-import { cubicBezier, motion } from "framer-motion";
+import { cubicBezier, motion, useScroll, useTransform } from "framer-motion";
 
 import logoIcon from "../../../public/icon/logo.svg";
 
@@ -42,6 +42,19 @@ const Home: React.FC<HomeProps> = ({ setComponentsHeight }) => {
 
   const homeRef = useRef<HTMLDivElement>(null);
 
+  const { scrollYProgress } = useScroll({
+    target: homeRef,
+    offset: ["start start", "end start"],
+  });
+  const imgY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const circleY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+
+  const h1Y = useTransform(scrollYProgress, [0, 1], ["0%", "-40%"]);
+  const h3Y = useTransform(scrollYProgress, [0, 1], ["0%", "-35%"]);
+  const linksY = useTransform(scrollYProgress, [0, 1], ["0%", "-500%"]);
+  const h4Y = useTransform(scrollYProgress, [0, 1], ["0%", "-70%"]);
+  const iconsY = useTransform(scrollYProgress, [0, 1], ["0%", "-200%"]);
+
   useEffect(() => {
     if (homeRef.current) {
       setComponentsHeight((prev: IComponentsHeight) => ({
@@ -60,6 +73,19 @@ const Home: React.FC<HomeProps> = ({ setComponentsHeight }) => {
     },
   ];
 
+  const [rightImg, setRightImg] = useState<any>(null);
+  const [big, setBig] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (pageWidth ? pageWidth < 820 : window.innerWidth < 820) {
+      setRightImg(smallerRight);
+      setBig(false);
+    } else {
+      setRightImg(biggerRight);
+      setBig(true);
+    }
+  }, [pageWidth]);
+
   const link = linkArr.map((item, index) => {
     return (
       <motion.a
@@ -69,6 +95,7 @@ const Home: React.FC<HomeProps> = ({ setComponentsHeight }) => {
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.1 * index + 1.8, duration: 0.5 }}
+        style={big ? { x: linksY } : { x: 0 }}
       >
         <Image src={item.icon} alt={item.name} />
       </motion.a>
@@ -93,6 +120,7 @@ const Home: React.FC<HomeProps> = ({ setComponentsHeight }) => {
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.1 * index + 2.5, duration: 0.5 }}
+        style={big ? { x: iconsY } : { x: 0 }}
       >
         <Image src={item.icon} alt={item.name} />
       </motion.div>
@@ -110,6 +138,7 @@ const Home: React.FC<HomeProps> = ({ setComponentsHeight }) => {
         damping: 10,
       }}
       className={style.imgContainer}
+      style={big ? { x: imgY } : { x: imgY }}
     >
       <Image priority={true} src={meImg} alt="Krystian" />
     </motion.div>
@@ -125,20 +154,11 @@ const Home: React.FC<HomeProps> = ({ setComponentsHeight }) => {
         damping: 10,
       }}
       className={style.imgContainer}
+      style={big ? { x: imgY } : {}}
     >
       <Image priority={true} src={meSquareImg} alt="Krystian" />
     </motion.div>
   );
-
-  const [rightImg, setRightImg] = useState<any>(null);
-
-  useEffect(() => {
-    if (pageWidth ? pageWidth < 820 : window.innerWidth < 820)
-      setRightImg(smallerRight);
-    else {
-      setRightImg(biggerRight);
-    }
-  }, [pageWidth]);
 
   return (
     <div className={style.Home} ref={homeRef}>
@@ -152,6 +172,7 @@ const Home: React.FC<HomeProps> = ({ setComponentsHeight }) => {
             ease: cubicBezier(0.5, 0, 1, 0.5),
           }}
           className={style.circleContainer}
+          style={big ? { x: circleY } : { x: 0 }}
         >
           <div className={style.logoContainer}>
             <Image src={logoIcon} alt="logo" />
@@ -162,7 +183,7 @@ const Home: React.FC<HomeProps> = ({ setComponentsHeight }) => {
 
       <div className={style.left}>
         <div className={style.center}>
-          <h1>
+          <motion.h1 style={big ? { x: h1Y } : {}}>
             <FlyingChars
               name={"Front-end React Developer"}
               fromX={-300}
@@ -170,11 +191,12 @@ const Home: React.FC<HomeProps> = ({ setComponentsHeight }) => {
               fromY={-400}
               toY={400}
             />
-          </h1>
+          </motion.h1>
           <motion.h3
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1.5 }}
+            style={big ? { x: h3Y } : { x: 0 }}
           >
             Hi, I’m Krystian Załuski. Front-end React Developer from Poland,
             Warsaw
@@ -187,6 +209,7 @@ const Home: React.FC<HomeProps> = ({ setComponentsHeight }) => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 2.2 }}
+            style={big ? { x: h4Y } : { x: 0 }}
           >
             Tech stack:
           </motion.h4>

@@ -7,7 +7,7 @@ import { cubicBezier, motion } from "framer-motion";
 interface LogoAnimationProps {}
 
 const LogoAnimation: React.FC<LogoAnimationProps> = () => {
-  const damping = 35;
+  const damping = 37;
   const stiffness = 400;
   const exitDuration = 0.2;
 
